@@ -1,0 +1,37 @@
+/* Element Selector */
+body{
+    background-color: lightgray;
+    text-align: center;
+}
+
+/* Common Class Selector */
+.card{
+    width: 300px;
+    height: 100px;
+    color: white;
+    margin: 20px auto;
+    line-height: 100px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Unique ID Selectors */
+#cse{
+    background-color: blue;
+}
+
+#it{
+    background-color: green;
+}
+
+#ece{
+    background-color: orange;
+}
+
+#eee{
+    background-color: purple;
+}
+
+#mechanical{
+    background-color: brown;
+}

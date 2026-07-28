@@ -1,0 +1,83 @@
+/* Group Selector */
+h2, p, span{
+    font-family: Arial;
+    margin: 10px;
+}
+
+
+/* Common Section Style */
+section{
+    width: 400px;
+    padding: 20px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+
+/* Classes with different colors */
+
+.zoho{
+    background-color: lightgreen;
+    color: darkgreen;
+}
+
+.freshworks{
+    background-color: lightblue;
+    color: blue;
+}
+
+.aspire{
+    background-color: lightyellow;
+    color: brown;
+}
+
+.cts{
+    background-color: lightpink;
+    color: red;
+}
+
+.tcs{
+    background-color: lavender;
+    color: purple;
+}/* Group Selector */
+h2, p, span{
+    font-family: Arial;
+    margin: 10px;
+}
+
+
+/* Common Section Style */
+section{
+    width: 400px;
+    padding: 20px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+
+/* Classes with different colors */
+
+.zoho{
+    background-color: lightgreen;
+    color: darkgreen;
+}
+
+.freshworks{
+    background-color: lightblue;
+    color: blue;
+}
+
+.aspire{
+    background-color: lightyellow;
+    color: brown;
+}
+
+.cts{
+    background-color: lightpink;
+    color: red;
+}
+
+.tcs{
+    background-color: lavender;
+    color: purple;
+}

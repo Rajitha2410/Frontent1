@@ -1,0 +1,20 @@
+/* Element Selector */
+body{
+    background-color: lightblue;
+    text-align: center;
+}
+
+/* Class Selector */
+.hospital{
+    width: 450px;
+    height: 220px;
+    margin: 30px auto;
+    padding: 20px;
+    color: white;
+}
+
+/* ID Selector */
+#apollo{
+    background-color: darkblue;
+}
+

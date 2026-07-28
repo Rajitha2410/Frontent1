@@ -1,0 +1,27 @@
+/* Universal Selector */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Element Selector */
+body{
+    background-color: lightgray;
+    text-align: center;
+}
+
+/* Class Selector */
+.movie{
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: navy;
+    color: white;
+    border-radius: 10px;
+}
+
+/* Group Selector */
+h2, p{
+    margin: 10px;
+}

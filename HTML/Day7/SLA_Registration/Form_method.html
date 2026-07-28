@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration Form</title>
+</head>
+<body>
+
+    <h2>SLA Institute - Student Registration Form</h2>
+
+    <form>
+
+        <label for="name">Student Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter your name">
+        <br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email">
+        <br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" placeholder="Enter password">
+        <br><br>
+
+        <label for="mobile">Mobile Number:</label><br>
+        <input type="tel" id="mobile" name="mobile" placeholder="Enter mobile number">
+        <br><br>
+
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age">
+        <br><br>
+
+        <label>Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label for="male">Male</label>
+
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label>
+
+        <input type="radio" id="other" name="gender" value="Other">
+        <label for="other">Other</label>
+        <br><br>
+
+        <label>Skills:</label><br>
+        <input type="checkbox" id="html" name="skills" value="HTML">
+        <label for="html">HTML</label>
+
+        <input type="checkbox" id="css" name="skills" value="CSS">
+        <label for="css">CSS</label>
+
+        <input type="checkbox" id="js" name="skills" value="JavaScript">
+        <label for="js">JavaScript</label>
+
+        <input type="checkbox" id="react" name="skills" value="React">
+        <label for="react">React</label>
+        <br><br>
+
+        <label for="course">Course Selection:</label><br>
+        <select id="course" name="course">
+            <option value="">--Select Course--</option>
+            <option value="Full Stack">Full Stack Development</option>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+            <option value="Data Science">Data Science</option>
+        </select>
+        <br><br>
+
+        <label for="address">Address:</label><br>
+        <textarea id="address" name="address" rows="4" cols="30"></textarea>
+        <br><br>
+
+        <label for="profile">Profile Image:</label><br>
+        <input type="file" id="profile" name="profile">
+        <br><br>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+
+    </form>
+
+</body>
+</html>

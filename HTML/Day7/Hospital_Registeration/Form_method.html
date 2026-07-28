@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospital Patient Registration</title>
+</head>
+<body>
+
+    <h2>Apollo Hospital Patient Registration</h2>
+
+    <form>
+
+        <label for="pid">Patient ID:</label><br>
+        <input type="text" id="pid" name="pid"><br><br>
+
+        <label for="pname">Patient Name:</label><br>
+        <input type="text" id="pname" name="pname"><br><br>
+
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age"><br><br>
+
+        <label>Gender:</label><br>
+        <input type="radio" id="male" name="gender">
+        <label for="male">Male</label>
+
+        <input type="radio" id="female" name="gender">
+        <label for="female">Female</label>
+
+        <input type="radio" id="other" name="gender">
+        <label for="other">Other</label><br><br>
+
+        <label for="blood">Blood Group:</label><br>
+        <select id="blood" name="blood">
+            <option>--Select Blood Group--</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+        </select><br><br>
+
+        <label for="doctor">Doctor:</label><br>
+        <select id="doctor" name="doctor">
+            <option>--Select Doctor--</option>
+            <option>Dr. Kumar</option>
+            <option>Dr. Priya</option>
+            <option>Dr. Arun</option>
+            <option>Dr. Meena</option>
+        </select><br><br>
+
+        <label for="date">Appointment Date:</label><br>
+        <input type="date" id="date" name="date"><br><br>
+
+        <label for="symptoms">Symptoms:</label><br>
+        <textarea id="symptoms" name="symptoms" rows="4" cols="30"></textarea><br><br>
+
+        <label for="report">Medical Report Upload:</label><br>
+        <input type="file" id="report" name="report"><br><br>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+
+    </form>
+
+</body>
+</html>
