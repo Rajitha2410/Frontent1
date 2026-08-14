@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+a{
+    text-decoration: none;
+}
+h1{
+    background-color: aquamarine;
+     padding: 20px;
+}
+h1::after{
+
+content:" ✔";
+color: black;
+}
+h1::before{
+ 
+    content:"*";
+    color: black;
+    
+}

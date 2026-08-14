@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(221, 177, 199);
+   
+}
+h1{
+    padding: 20px;
+    background-color: white;
+     text-align: center;
+}
+.save:hover{
+    background-color: cadetblue;
+    color: black;
+ padding: 20px;
+ border-radius: 20px;
+ 
+ 
+}
+.edit:hover{
+    background-color: azure;
+    color: blueviolet;
+}
+.delete:hover{
+    background-attachment:black;
+    color: white;
+}
+.login:hover{
+    background-color: burlywood;
+    color: chartreuse;
+}
+.register:hover{
+    background-color: darkgreen;
+    color: yellow;
+}
+

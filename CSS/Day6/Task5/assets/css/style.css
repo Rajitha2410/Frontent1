@@ -1,0 +1,79 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    padding:20px;
+}
+
+/* Common Box Style */
+.box{
+    width:200px;
+    height:100px;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:20px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+
+/* Box 1 - Static */
+.static-box{
+    position:static;
+    background:red;
+}
+
+
+/* Box 2 - Relative */
+.relative-box{
+    position:relative;
+    top:30px;
+    left:50px;
+    background:blue;
+}
+
+
+/* Parent for Absolute */
+.container{
+    position:relative;
+    height:200px;
+}
+
+
+/* Box 3 - Absolute */
+.absolute-box{
+    position:absolute;
+    top:20px;
+    right:50px;
+    background:purple;
+}
+
+
+/* Box 5 - Sticky */
+.sticky-box{
+    position:sticky;
+    top:0;
+    background:green;
+}
+
+
+/* Scroll Content */
+.content{
+    height:800px;
+    padding:20px;
+}
+
+
+/* Box 4 - Fixed */
+.fixed-box{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:orange;
+}

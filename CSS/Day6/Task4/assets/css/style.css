@@ -1,0 +1,40 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    padding:50px;
+    font-family:Arial, sans-serif;
+}
+
+.box{
+    width:150px;
+    height:150px;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:20px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+/* Box 1 Normal Position */
+.box1{
+    background-color:red;
+}
+
+/* Box 2 Relative Position */
+.box2{
+    background-color:blue;
+    position:relative;
+    top:40px;
+    left:60px;
+}
+
+/* Box 3 Normal Position */
+.box3{
+    background-color:green;
+}

@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Desktop - 3 cards per row */
+
+.student-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.student-card {
+    width: 30%;
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px gray;
+}
+
+.student-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.student-card h2 {
+    margin-bottom: 10px;
+}
+
+.student-card p {
+    margin: 8px 0;
+}
+
+
+
+@media (max-width: 768px) {
+
+    .student-card {
+        width: 45%;
+    }
+
+}
+
+
+
+@media (max-width: 576px) {
+
+    .student-card {
+        width: 100%;
+    }
+
+}

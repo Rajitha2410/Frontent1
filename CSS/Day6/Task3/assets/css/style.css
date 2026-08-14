@@ -1,0 +1,35 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, sans-serif;
+}
+
+/* Parent */
+.cart{
+    position:relative;
+    font-size:60px;
+    background-color:#f2f2f2;
+    padding:20px;
+    border-radius:10px;
+}
+
+/* Badge */
+.badge{
+    position:absolute;
+    top:0;
+    right:0;
+    background-color:red;
+    color:white;
+    font-size:16px;
+    padding:5px 8px;
+    border-radius:50%;
+    font-weight:bold;
+}

@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Times New Roman', Times, serif;
+}
+a{
+    transition: none;
+}
+h1{
+    background-color: white;
+    font-size: x-large;
+    color: black;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:250px;
+    height:250px;
+    padding: 30px;
+}
+

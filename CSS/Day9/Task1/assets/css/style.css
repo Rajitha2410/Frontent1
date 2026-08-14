@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Times New Roman', Times, serif;
+}
+a{
+    transition: none;
+}
+h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login:hover{
+    background-color: rgb(98, 0, 255);
+    color:white;
+    transition: 0.5s;
+    transform: scale(1.1);
+
+}
+button{
+    background-color: aquamarine;
+    color:black;
+    font-size: medium;
+    padding: 20px;
+    
+    
+}
+button{
+    height: 70px;
+    width: 100px;
+   
+    }
+    .Register:hover{
+        background-color: rgba(226, 43, 171, 0.733);
+        color: bisque;
+        transition: 0.5s;
+        transform: scale(1.1);
+    }
+    .submit:hover{
+        background-color: rgb(60, 161, 94);
+        color: white;
+        transition: 0.5s;
+        transform: scale(1.1);
+    }
+    .delete:hover{
+         background-color: cadetblue;
+         color: white;
+         transition: 0.5s;
+         transform: scale(1.1);
+    }
+    .save:hover{
+        background-color: brown;
+        color: white;
+        transition: 0.5s;
+        transform: scale(1.1);
+    }

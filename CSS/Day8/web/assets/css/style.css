@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: aqua;
+}
+a{
+    text-decoration: none;
+}
+h1{
+    background-color: bisque;
+    color: black;
+    font-size: large;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo{
+    background-color: rgb(13, 223, 153);
+    padding: 20px;
+}
