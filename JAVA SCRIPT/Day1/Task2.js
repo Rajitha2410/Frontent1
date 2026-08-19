@@ -1,8 +1,8 @@
-1. What is JavaScript?
+ 1. What is JavaScript?
 JavaScript is a programming language used to make web pages interactive and dynamic.
 
 2. What is a variable?
-A variable is a named storage location used to store data.
+A variable is a named storage location used to store data. 
 
 3. What is variable declaration?
 Variable declaration means creating a variable using var, let, or const.
