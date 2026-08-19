@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Assignments Hub | Rajitha</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        code, .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(20, 184, 166, 0.4);
+            transform: translateY(-2px);
+        }
+        .active-tab {
+            background-color: #14b8a6 !important;
+            color: #0f172a !important;
+            font-weight: 700 !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-teal-500 selection:text-slate-950 flex flex-col">
+
+    <!-- Top Glow Effect -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-64 bg-gradient-to-b from-teal-500/10 via-sky-500/5 to-transparent pointer-events-none -z-10"></div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap justify-between items-center gap-4">
+            
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-400 to-cyan-600 flex items-center justify-center text-slate-950 font-extrabold text-xl shadow-lg shadow-teal-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <div>
+                    <div class="font-extrabold text-lg text-white tracking-tight flex items-center gap-2">
+                        Frontend<span class="text-teal-400">Hub</span>
+                        <span class="text-[10px] bg-teal-500/20 text-teal-300 font-semibold px-2 py-0.5 rounded-full border border-teal-500/30">v1.0</span>
+                    </div>
+                    <p class="text-xs text-slate-400">Comprehensive Assignment Portfolio</p>
+                </div>
+            </a>
+
+            <!-- Search & Actions -->
+            <div class="flex items-center gap-3 flex-1 max-w-md ml-auto">
+                <div class="relative w-full">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+                    <input type="text" id="searchInput" placeholder="Search assignments, topics, days..." 
+                           class="w-full bg-slate-900/90 text-sm text-slate-200 placeholder-slate-500 pl-9 pr-4 py-2 rounded-xl border border-slate-700/80 focus:outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 transition"
+                           onkeyup="filterAssignments()">
+                    <button id="clearSearch" onclick="resetSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 text-xs">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Category Nav Pills Bar -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 overflow-x-auto no-scrollbar border-t border-slate-800/40 flex items-center gap-2">
+            <button onclick="setCategoryFilter('all')" id="pill-all" class="category-pill active-tab px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white transition">
+                <i class="fa-solid fa-border-all mr-1.5"></i> All (80+)
+            </button>
+            <button onclick="setCategoryFilter('html')" id="pill-html" class="category-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white transition">
+                <i class="fa-brands fa-html5 mr-1.5 text-orange-400"></i> HTML
+            </button>
+            <button onclick="setCategoryFilter('css')" id="pill-css" class="category-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white transition">
+                <i class="fa-brands fa-css3-alt mr-1.5 text-sky-400"></i> CSS
+            </button>
+            <button onclick="setCategoryFilter('bootstrap')" id="pill-bootstrap" class="category-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white transition">
+                <i class="fa-brands fa-bootstrap mr-1.5 text-purple-400"></i> Bootstrap
+            </button>
+            <button onclick="setCategoryFilter('tailwind')" id="pill-tailwind" class="category-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white transition">
+                <i class="fa-solid fa-wind mr-1.5 text-teal-400"></i> Tailwind
+            </button>
+            <button onclick="setCategoryFilter('javascript')" id="pill-javascript" class="category-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white transition">
+                <i class="fa-brands fa-js mr-1.5 text-amber-400"></i> JavaScript
+            </button>
+            <button onclick="setCategoryFilter('articles')" id="pill-articles" class="category-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white transition">
+                <i class="fa-solid fa-newspaper mr-1.5 text-emerald-400"></i> Articles
+            </button>
+            <button onclick="setCategoryFilter('vs')" id="pill-vs" class="category-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white transition">
+                <i class="fa-solid fa-laptop-code mr-1.5 text-blue-400"></i> VS
+            </button>
+            <button onclick="setCategoryFilter('cs')" id="pill-cs" class="category-pill px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-slate-800 text-slate-300 hover:text-white transition">
+                <i class="fa-solid fa-network-wired mr-1.5 text-rose-400"></i> CS
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-12">
+
+        <!-- Hero & Quick Stats Section -->
+        <section class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-800 p-8 sm:p-10 border border-slate-800 shadow-2xl">
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-8 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-medium">
+                        <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                        Full Frontend Learning Track
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                        Frontend Development <br class="hidden sm:inline">
+                        <span class="bg-gradient-to-r from-teal-400 via-cyan-400 to-sky-400 bg-clip-text text-transparent">Assignments & Projects Hub</span>
+                    </h1>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+                        A structured repository of daily coursework, hands-on tasks, responsive layouts, multi-page websites, and interactive JavaScript scripts created during the frontend specialization.
+                    </p>
+                </div>
+                
+                <!-- Stats Counters -->
+                <div class="lg:col-span-4 grid grid-cols-2 gap-3">
+                    <div class="bg-slate-950/60 p-4 rounded-2xl border border-slate-800 text-center">
+                        <div class="text-3xl font-extrabold text-teal-400">80+</div>
+                        <div class="text-xs text-slate-400 mt-1 font-medium">Live Assignments</div>
+                    </div>
+                    <div class="bg-slate-950/60 p-4 rounded-2xl border border-slate-800 text-center">
+                        <div class="text-3xl font-extrabold text-sky-400">8</div>
+                        <div class="text-xs text-slate-400 mt-1 font-medium">Core Categories</div>
+                    </div>
+                    <div class="bg-slate-950/60 p-4 rounded-2xl border border-slate-800 text-center">
+                        <div class="text-3xl font-extrabold text-amber-400">10+</div>
+                        <div class="text-xs text-slate-400 mt-1 font-medium">CSS & HTML Days</div>
+                    </div>
+                    <div class="bg-slate-950/60 p-4 rounded-2xl border border-slate-800 text-center">
+                        <div class="text-3xl font-extrabold text-emerald-400">100%</div>
+                        <div class="text-xs text-slate-400 mt-1 font-medium">GitHub Ready</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Status Notification (Hidden by default) -->
+        <div id="searchNotification" class="hidden p-4 rounded-xl bg-slate-900 border border-slate-700 text-sm flex justify-between items-center">
+            <span id="searchResultText" class="text-slate-300"></span>
+            <button onclick="resetSearch()" class="text-teal-400 hover:text-teal-300 text-xs font-semibold">Clear Search</button>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CATEGORY 1: HTML ASSIGNMENTS               -->
+        <!-- ========================================== -->
+        <section id="category-html" class="category-section space-y-6">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold text-lg border border-orange-500/30">
+                        <i class="fa-brands fa-html5"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white tracking-tight">HTML Assignments</h2>
+                        <p class="text-xs text-slate-400">Semantic markup, tables, forms, multi-page portals, and multimedia embeds</p>
+                    </div>
+                </div>
+                <span class="text-xs font-mono bg-slate-900 px-3 py-1 rounded-full text-slate-400 border border-slate-800">Days 1 - 10</span>
+            </div>
+
+            <!-- HTML Days Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                <!-- HTML Day 1 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="html" data-keywords="html day 1 personal profile family favorite college company tags">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-orange-500/20 text-orange-400 text-xs font-bold rounded-lg">Day 1</span>
+                            <span class="text-xs text-slate-500 font-mono">HTML/Day1</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Personal Profile & Web Hierarchy</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Introduction to HTML tags, basic structures, and multi-file personal directory website.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="HTML/Day1/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📄 index.html (Main Page)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day1/Profile.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>👤 Profile.html</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day1/Family.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>👨‍👩‍👧 Family.html</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day1/Favorite.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>⭐ Favorite.html</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day1/college.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🎓 college.html</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day1/Company.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🏢 Company.html</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HTML Day 2 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="html" data-keywords="html day 2 elements block inline formatting interactive single page">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-orange-500/20 text-orange-400 text-xs font-bold rounded-lg">Day 2</span>
+                            <span class="text-xs text-slate-500 font-mono">HTML/Day2</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Block vs Inline & Formatting</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Understanding element categories: block, inline, interactive, text formatters, and single page structure.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="HTML/Day2/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📄 Day 2 Index</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day2/Intro.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>💡 Intro.html</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day2/Task2/Block%20level.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📦 Block Level Elements</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day2/Task2/Inline.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🔗 Inline Elements</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day2/Task2/Formatting.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>✨ Formatting Elements</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day2/Task2/Interactive.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🖱️ Interactive Elements</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day2/Task2/Single%20page.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📑 Single Page Layout</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HTML Day 3 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="html" data-keywords="html day 3 lists task1 task2 task3 task4 task5 intex">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-orange-500/20 text-orange-400 text-xs font-bold rounded-lg">Day 3</span>
+                            <span class="text-xs text-slate-500 font-mono">HTML/Day3</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Lists & Structured Hierarchy</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Ordered, unordered, and nested list structures across 5 distinct practice tasks.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="HTML/Day3/intex.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📄 Day 3 Index (intex.html)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day3/Task3/task1.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📝 Task 1</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day3/Task3/task2.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📝 Task 2</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day3/Task3/Task3.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📝 Task 3</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day3/Task3/Task4.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📝 Task 4</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day3/Task3/Task5.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📝 Task 5</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HTML Day 4 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="html" data-keywords="html day 4 attributes images href links my home brother home">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-orange-500/20 text-orange-400 text-xs font-bold rounded-lg">Day 4</span>
+                            <span class="text-xs text-slate-500 font-mono">HTML/Day4</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Attributes, Media & Hyperlinks</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">HTML attributes, image embeds, hyperlink navigation between connected pages, and 6 practice tasks.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="HTML/Day4/Block%20Level.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📦 Block Level Elements</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day4/Inline.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🔗 Inline Elements</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day4/Day4/Task1.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🖼️ Task 1 - 6 Gallery</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day4/href.html/My%20home.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🏡 My Home Page</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day4/href.html/Brothr%20home%20.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🏠 Brother Home Page</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HTML Day 5 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="html" data-keywords="html day 5 indian constitution companies multi-page bangalore hyderabad preamble rights duties">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-orange-500/20 text-orange-400 text-xs font-bold rounded-lg">Day 5</span>
+                            <span class="text-xs text-slate-500 font-mono">HTML/Day5</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Indian Constitution & Multi-Page Portals</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Full-fledged multi-page websites: Indian Constitution portal & IT Companies branch network.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="HTML/Day5/indian/index.html" class="flex items-center justify-between p-2 rounded-lg bg-orange-500/20 text-orange-300 font-semibold border border-orange-500/30 transition">
+                                <span>📜 Indian Constitution (Main)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day5/assets/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🏢 IT Companies Portal</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day5/assets/Bangalore.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📍 Bangalore Branch</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day5/assets/Hyderabad.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📍 Hyderabad Branch</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HTML Day 6 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="html" data-keywords="html day 6 forms registration login job feedback contact">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-orange-500/20 text-orange-400 text-xs font-bold rounded-lg">Day 6</span>
+                            <span class="text-xs text-slate-500 font-mono">HTML/Day6/Form</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Comprehensive Forms Project</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Form elements, input types, validations, textareas, dropdowns, and button controls.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="HTML/Day6/Form/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📋 Forms Hub Index</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day6/Form/registration.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📝 Registration Form</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day6/Form/login.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🔐 Login Form</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day6/Form/job.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>💼 Job Application</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day6/Form/feedback.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>⭐ Feedback Form</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day6/Form/contact.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📬 Contact Form</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HTML Day 7 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="html" data-keywords="html day 7 college employee hospital product sla registration form table">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-orange-500/20 text-orange-400 text-xs font-bold rounded-lg">Day 7</span>
+                            <span class="text-xs text-slate-500 font-mono">HTML/Day7</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Form vs Table Layout Systems</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Dual implementation of 5 registration systems comparing pure Form layouts with Table-structured layouts.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="HTML/Day7/College_Registeration/Form_method.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🎓 College Registration</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day7/Employe_Registeration/Form_method.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>👔 Employee Registration</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day7/Hospital_Registeration/Form_method.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🏥 Hospital Registration</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day7/Product_Registeration/Form_method.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📦 Product Registration</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day7/SLA_Registration/Form_method.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🏷️ SLA Registration</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HTML Day 8, 9, 10 & Projects -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="html" data-keywords="html day 8 day 9 day 10 multimedia audio video leo movie sir zip">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-orange-500/20 text-orange-400 text-xs font-bold rounded-lg">Days 8 - 10</span>
+                            <span class="text-xs text-slate-500 font-mono">HTML/Day8-10</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Multimedia, Advanced Forms & Media Project</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Audio/video integration, complex inputs, and full Leo Movie details promotional website.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="HTML/sir%20zip/pages/index.html" class="flex items-center justify-between p-2 rounded-lg bg-orange-500/20 text-orange-300 font-semibold border border-orange-500/30 transition">
+                                <span>🎬 Leo Movie Details Portal</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day8/form.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📋 Day 8 Form & Tasks (1-5)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day9/form.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>🎥 Day 9 Multimedia Form</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day9/table.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📊 Day 9 Table System</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="HTML/Day10/Form.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-orange-500/20 text-slate-300 hover:text-orange-300 transition">
+                                <span>📑 Day 10 Advanced Form</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- CATEGORY 2: CSS ASSIGNMENTS                -->
+        <!-- ========================================== -->
+        <section id="category-css" class="category-section space-y-6">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-lg border border-sky-500/30">
+                        <i class="fa-brands fa-css3-alt"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white tracking-tight">CSS Assignments</h2>
+                        <p class="text-xs text-slate-400">Styling, Box Model, Flexbox layouts, Grid systems, Transforms, and Responsive UI</p>
+                    </div>
+                </div>
+                <span class="text-xs font-mono bg-slate-900 px-3 py-1 rounded-full text-slate-400 border border-slate-800">Days 1 - 10</span>
+            </div>
+
+            <!-- CSS Days Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                <!-- CSS Day 1 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="css" data-keywords="css day 1 intro internal selectors styling tasks">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-sky-500/20 text-sky-400 text-xs font-bold rounded-lg">Day 1</span>
+                            <span class="text-xs text-slate-500 font-mono">CSS/Day1</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">CSS Selectors & Internal Styling</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Introduction to inline vs internal vs external stylesheets, tag selectors, classes, and IDs.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="CSS/Day1/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>📄 CSS Day 1 Index</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day1/Intrnal.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>🎨 Internal CSS Demo</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day1/Day1/Task1.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>📝 Day 1 Tasks (1 - 5)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSS Day 2 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="css" data-keywords="css day 2 colors fonts typography task1 task2 task3 task4 task5 task6">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-sky-500/20 text-sky-400 text-xs font-bold rounded-lg">Day 2</span>
+                            <span class="text-xs text-slate-500 font-mono">CSS/Day2</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Typography, Colors & Backgrounds</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Font families, weights, color models (HEX, RGB), text decorations, and 6 standalone tasks.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="CSS/Day2/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>📄 CSS Day 2 Index</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day2/Day2/Task1/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>🔤 Task 1 - Font Styling</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day2/Day2/Task2/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>🎨 Tasks 2 - 6 Variations</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSS Day 3 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="css" data-keywords="css day 3 box model margin padding border cards">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-sky-500/20 text-sky-400 text-xs font-bold rounded-lg">Day 3</span>
+                            <span class="text-xs text-slate-500 font-mono">CSS/Day3</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">CSS Box Model & Card Styling</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Content, padding, border, margin calculations, box shadows, and 6 stylized content cards.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="CSS/Day3/Task1/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>📦 Task 1 - Card Layout</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day3/Task3/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>🏢 Task 3 - Corporate Card</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day3/Task6/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>🦸 Task 6 - Avengers Profile Card</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSS Day 4 & 5 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="css" data-keywords="css day 4 day 5 flexbox justify-content align-items test suite">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-sky-500/20 text-sky-400 text-xs font-bold rounded-lg">Days 4 - 5</span>
+                            <span class="text-xs text-slate-500 font-mono">CSS/Day4-5</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Flexbox Architecture & Test Suite</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Flex containers, main/cross axes, justify-content, align-items, flex-direction, and test series.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="CSS/Day4/Day4/Task1/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>📐 Day 4 Flexbox Task 1</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day4/trial/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>🧪 Day 4 Flex Trial</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day5/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>📄 Day 5 Flex Gallery</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day5/test/Task1/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>🎯 Day 5 Test Tasks (1 - 4)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSS Day 6 & 7 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="css" data-keywords="css day 6 day 7 flexbox product cards ecommerce camera laptop watch">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-sky-500/20 text-sky-400 text-xs font-bold rounded-lg">Days 6 - 7</span>
+                            <span class="text-xs text-slate-500 font-mono">CSS/Day6-7</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Advanced Flex Layouts & E-Commerce</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Flexbox navigation bars, product catalog cards, gadget showcases (camera, laptop, watch).</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="CSS/Day6/Task1/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>🧭 Day 6 Navigation & Tasks (1-5)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day7/Task1/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>🛍️ Day 7 Product Showcase 1</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day7/Task3/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>📱 Day 7 Gadgets Grid (Task 3)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CSS Day 8, 9 & 10 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="css" data-keywords="css day 8 day 9 day 10 grid positioning web layout practice cards">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-sky-500/20 text-sky-400 text-xs font-bold rounded-lg">Days 8 - 10</span>
+                            <span class="text-xs text-slate-500 font-mono">CSS/Day8-10</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">CSS Grid, Positioning & Full Website</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Absolute/relative positioning, 2D CSS Grid templates, full web project, and transform animations.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="CSS/Day8/web/index.html" class="flex items-center justify-between p-2 rounded-lg bg-sky-500/20 text-sky-300 font-semibold border border-sky-500/30 transition">
+                                <span>🌐 Day 8 Full Web Layout Project</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day9/Task1/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>🔲 Day 9 Grid Layout Tasks (1-5)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day10/Day10/Task1/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>🔄 Day 10 Transforms & Tasks (1-6)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="CSS/Day10/practice/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-sky-500/20 text-slate-300 hover:text-sky-300 transition">
+                                <span>🃏 Day 10 SLA Institute Cards</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- CATEGORY 3: BOOTSTRAP ASSIGNMENTS          -->
+        <!-- ========================================== -->
+        <section id="category-bootstrap" class="category-section space-y-6">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-lg border border-purple-500/30">
+                        <i class="fa-brands fa-bootstrap"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white tracking-tight">Bootstrap (BS) Assignments</h2>
+                        <p class="text-xs text-slate-400">12-column responsive grid, components, interactive carousels, and travel portal</p>
+                    </div>
+                </div>
+                <span class="text-xs font-mono bg-slate-900 px-3 py-1 rounded-full text-slate-400 border border-slate-800">Days 1 - 3</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+                <!-- BS Day 1 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="bootstrap" data-keywords="bootstrap bs day 1 intro cdn components">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-purple-500/20 text-purple-400 text-xs font-bold rounded-lg">BS Day 1</span>
+                            <span class="text-xs text-slate-500 font-mono">BS/Day1</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Bootstrap Setup & Components</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">CDN linking, typography utilities, alert boxes, buttons, and responsive text containers.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="BS/Day1/Task1/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-purple-500/20 text-slate-300 hover:text-purple-300 transition">
+                                <span>🅱️ BS Introduction & Login Task</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BS Day 2 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="bootstrap" data-keywords="bootstrap bs day 2 grid container columns two column four column">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-purple-500/20 text-purple-400 text-xs font-bold rounded-lg">BS Day 2</span>
+                            <span class="text-xs text-slate-500 font-mono">BS/Day2</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">12-Column Responsive Grid</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Bootstrap container fluid vs fixed containers, rows, col-6 two column and col-3 four column grids.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="BS/Day2/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-purple-500/20 text-slate-300 hover:text-purple-300 transition">
+                                <span>📦 Basic Container Page</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="BS/Day2/Task2.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-purple-500/20 text-slate-300 hover:text-purple-300 transition">
+                                <span>⚖️ Two Column Layout (Task 2)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="BS/Day2/Task3.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-purple-500/20 text-slate-300 hover:text-purple-300 transition">
+                                <span>🧱 Four Column Layout (Task 3)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BS Day 3 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="bootstrap" data-keywords="bootstrap bs day 3 travel website carousel navbar cards contact form">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-purple-500/20 text-purple-400 text-xs font-bold rounded-lg">BS Day 3</span>
+                            <span class="text-xs text-slate-500 font-mono">BS/Day3</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Dream Travel Website Project</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Full-fledged responsive travel site with dark navbar, interactive carousel, cards, and contact form.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="BS/Day3/index.html" class="flex items-center justify-between p-2.5 rounded-lg bg-purple-500/20 text-purple-300 font-semibold border border-purple-500/30 transition">
+                                <span>✈️ Open Dream Travel Project</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- CATEGORY 4: TAILWIND CSS                   -->
+        <!-- ========================================== -->
+        <section id="category-tailwind" class="category-section space-y-6">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold text-lg border border-teal-500/30">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white tracking-tight">Tailwind CSS Assignments</h2>
+                        <p class="text-xs text-slate-400">Utility-first styling, flex utilities, responsive typography, and state modifiers</p>
+                    </div>
+                </div>
+                <span class="text-xs font-mono bg-slate-900 px-3 py-1 rounded-full text-slate-400 border border-slate-800">Day 4 Track</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+                <!-- Tailwind Intro -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="tailwind" data-keywords="tailwind day 4 utility intro about framework">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-teal-500/20 text-teal-400 text-xs font-bold rounded-lg">Introduction</span>
+                            <span class="text-xs text-slate-500 font-mono">BS/Day4/index.html</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Tailwind Utility-First Overview</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Fundamental introduction to Tailwind helper classes (flex, p-4, text-center, font-thin).</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="BS/Day4/index.html" class="flex items-center justify-between p-2 rounded-lg bg-teal-500/20 text-teal-300 font-semibold border border-teal-500/30 transition">
+                                <span>🍃 Tailwind Intro Page</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tailwind Tasks 1 - 3 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="tailwind" data-keywords="tailwind day 4 task1 task2 task3 buttons box text center">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-teal-500/20 text-teal-400 text-xs font-bold rounded-lg">Tasks 1 - 3</span>
+                            <span class="text-xs text-slate-500 font-mono">BS/Day4/Day4</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Typography, Containers & Buttons</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Styled header banners, rounded card containers, and styled interaction buttons.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="BS/Day4/Day4/Task1.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-teal-500/20 text-slate-300 hover:text-teal-300 transition">
+                                <span>✨ Task 1 - Welcome Header</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="BS/Day4/Day4/Task2.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-teal-500/20 text-slate-300 hover:text-teal-300 transition">
+                                <span>📦 Task 2 - Styled Box</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="BS/Day4/Day4/Task3.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-teal-500/20 text-slate-300 hover:text-teal-300 transition">
+                                <span>🔘 Task 3 - Button Component</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tailwind Tasks 4 - 5 -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="tailwind" data-keywords="tailwind day 4 task4 task5 flex gap hover states">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-teal-500/20 text-teal-400 text-xs font-bold rounded-lg">Tasks 4 - 5</span>
+                            <span class="text-xs text-slate-500 font-mono">BS/Day4/Day4</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Flexbox Utilities & Pseudo-Classes</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Flexbox gap utilities and dynamic hover pseudo-class modifiers (hover:bg-blue-700).</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="BS/Day4/Day4/Task4.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-teal-500/20 text-slate-300 hover:text-teal-300 transition">
+                                <span>↔️ Task 4 - Flex Gap Cards</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="BS/Day4/Day4/Task5.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-teal-500/20 text-slate-300 hover:text-teal-300 transition">
+                                <span>🖱️ Task 5 - Hover State Button</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- CATEGORY 5: JAVASCRIPT                     -->
+        <!-- ========================================== -->
+        <section id="category-javascript" class="category-section space-y-6">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg border border-amber-500/30">
+                        <i class="fa-brands fa-js"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white tracking-tight">JavaScript Assignments</h2>
+                        <p class="text-xs text-slate-400">Core JS syntax, variable scopes, primitive data types, and interactive script execution</p>
+                    </div>
+                </div>
+                <span class="text-xs font-mono bg-slate-900 px-3 py-1 rounded-full text-slate-400 border border-slate-800">Days 1 - 2</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+                <!-- JS Day 1 HTML Viewer -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="javascript" data-keywords="javascript js day 1 variables var let const interview questions fundamentals runner">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-amber-500/20 text-amber-400 text-xs font-bold rounded-lg">JS Day 1</span>
+                            <span class="text-xs text-slate-500 font-mono">JAVA SCRIPT/Day1</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Variables & Fundamentals Q&A</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Interactive viewer for Task 1 (var, let, const declarations) and Task 2 (10 Core JS interview questions).</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="JAVA%20SCRIPT/Day1/index.html" class="flex items-center justify-between p-2.5 rounded-lg bg-amber-500/20 text-amber-300 font-semibold border border-amber-500/30 transition">
+                                <span>⚡ Open JS Day 1 Viewer</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JS Day 2 Hub -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="javascript" data-keywords="javascript js day 2 typeof datatypes reassignment immutability tasks">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-amber-500/20 text-amber-400 text-xs font-bold rounded-lg">JS Day 2</span>
+                            <span class="text-xs text-slate-500 font-mono">JAVA SCRIPT/Day2</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Data Types & Tasks (1 - 4)</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Primitive datatypes, typeof checks, let variable reassignment, and const immutability demos.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="JAVA%20SCRIPT/Day2/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-amber-500/20 text-slate-300 hover:text-amber-300 transition">
+                                <span>📑 Day 2 Tasks Hub</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="JAVA%20SCRIPT/Day2/Task1/index1.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-amber-500/20 text-slate-300 hover:text-amber-300 transition">
+                                <span>👤 Task 1: Student Detail</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="JAVA%20SCRIPT/Day2/Task2/index2.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-amber-500/20 text-slate-300 hover:text-amber-300 transition">
+                                <span>🔍 Task 2: Data Types (typeof)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="JAVA%20SCRIPT/Day2/Task3/index3.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-amber-500/20 text-slate-300 hover:text-amber-300 transition">
+                                <span>🔁 Task 3: Variable Reassign</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="JAVA%20SCRIPT/Day2/Task4/index.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-amber-500/20 text-slate-300 hover:text-amber-300 transition">
+                                <span>🚫 Task 4: Const Immutability</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- JS Day 2 Practice Runner -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="javascript" data-keywords="javascript js day 2 practice assignment runner console var let const num string boolean">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-amber-500 text-slate-950 text-xs font-bold rounded-lg">Featured Runner</span>
+                            <span class="text-xs text-amber-400 font-mono">Day2/assignment</span>
+                        </div>
+                        <h3 class="text-base font-bold text-white mb-2">Practice Assignments Console Runner</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Live interactive script execution & console output viewer for all 6 Day 2 practice JS files.</p>
+                        
+                        <div class="space-y-1.5 mb-4 text-xs font-mono">
+                            <a href="JAVA%20SCRIPT/Day2/assignment/index.html" class="flex items-center justify-between p-2.5 rounded-lg bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 transition shadow-md">
+                                <span>▶️ Open Interactive JS Runner</span>
+                                <i class="fa-solid fa-play text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- CATEGORY 6: ARTICLES                       -->
+        <!-- ========================================== -->
+        <section id="category-articles" class="category-section space-y-6">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg border border-emerald-500/30">
+                        <i class="fa-solid fa-newspaper"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white tracking-tight">Articles & Web Publications</h2>
+                        <p class="text-xs text-slate-400">Multi-page editorial project & web development guides</p>
+                    </div>
+                </div>
+                <span class="text-xs font-mono bg-slate-900 px-3 py-1 rounded-full text-slate-400 border border-slate-800">Editorial Track</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                <!-- Life in 2050 Project -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="articles" data-keywords="articles life in 2050 future technology transportation education contact tailwind">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-lg">Featured Multi-Page</span>
+                            <span class="text-xs text-slate-500 font-mono">article/</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Life in 2050 (Future World Project)</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">A multi-page Tailwind editorial exploring artificial intelligence, smart cities, future transportation, and digital education.</p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
+                            <a href="article/index.html" class="flex items-center justify-between p-2 rounded-lg bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30 transition">
+                                <span>🏠 Home (Life in 2050)</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="article/future.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 transition">
+                                <span>🏙️ Future Life</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="article/technology.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 transition">
+                                <span>🤖 Technology & AI</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="article/transportation.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 transition">
+                                <span>🚗 Transportation</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="article/education.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 transition">
+                                <span>🎓 Education 2050</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="article/contact.html" class="flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 transition">
+                                <span>✉️ Contact Future</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Development Article -->
+                <div class="assignment-card glass-card rounded-2xl p-5 flex flex-col justify-between transition-all" data-category="articles" data-keywords="articles web development guide html css javascript learn build create">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="px-2.5 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-lg">Guide Article</span>
+                            <span class="text-xs text-slate-500 font-mono">CSS/Aetical</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Web Development: Learn • Build • Create</h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Comprehensive technical overview of Frontend, Backend, and Full Stack technologies with styled semantic cards.</p>
+                        
+                        <div class="space-y-1.5 text-xs font-mono">
+                            <a href="CSS/Aetical/Assets/index.html" class="flex items-center justify-between p-2.5 rounded-lg bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30 transition">
+                                <span>📖 Read Web Development Guide</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- CATEGORY 7: VS (DEVELOPER SETUP & TOOLS)   -->
+        <!-- ========================================== -->
+        <section id="category-vs" class="category-section space-y-6">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-lg border border-blue-500/30">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white tracking-tight">VS (Visual Studio Code & Tools)</h2>
+                        <p class="text-xs text-slate-400">Development environment, productivity shortcuts, extensions, and workflow cheatsheet</p>
+                    </div>
+                </div>
+                <span class="text-xs font-mono bg-slate-900 px-3 py-1 rounded-full text-slate-400 border border-slate-800">Developer Reference</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                
+                <!-- Card 1: Emmet Abbreviations -->
+                <div class="assignment-card glass-card rounded-2xl p-5" data-category="vs" data-keywords="vs code emmet shortcuts boilerplate tags speed">
+                    <div class="flex items-center gap-2 text-blue-400 font-bold text-sm mb-3">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Essential Emmet Cheatsheet</span>
+                    </div>
+                    <div class="space-y-2 text-xs font-mono text-slate-300">
+                        <div class="bg-slate-900/90 p-2 rounded-lg flex justify-between">
+                            <span class="text-blue-300">! + Tab</span>
+                            <span class="text-slate-400">HTML5 Boilerplate</span>
+                        </div>
+                        <div class="bg-slate-900/90 p-2 rounded-lg flex justify-between">
+                            <span class="text-blue-300">.container</span>
+                            <span class="text-slate-400">&lt;div class="container"&gt;</span>
+                        </div>
+                        <div class="bg-slate-900/90 p-2 rounded-lg flex justify-between">
+                            <span class="text-blue-300">ul&gt;li*5&gt;a</span>
+                            <span class="text-slate-400">Nested Nav List</span>
+                        </div>
+                        <div class="bg-slate-900/90 p-2 rounded-lg flex justify-between">
+                            <span class="text-blue-300">h1{Title}+p</span>
+                            <span class="text-slate-400">Heading & Paragraph</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Essential Shortcuts -->
+                <div class="assignment-card glass-card rounded-2xl p-5" data-category="vs" data-keywords="vs code keyboard shortcuts multi-cursor duplicate line terminal">
+                    <div class="flex items-center gap-2 text-blue-400 font-bold text-sm mb-3">
+                        <i class="fa-solid fa-keyboard"></i>
+                        <span>VS Code Keybindings</span>
+                    </div>
+                    <div class="space-y-2 text-xs font-mono text-slate-300">
+                        <div class="bg-slate-900/90 p-2 rounded-lg flex justify-between">
+                            <span class="text-blue-300">Alt + Shift + ↓</span>
+                            <span class="text-slate-400">Duplicate Line Down</span>
+                        </div>
+                        <div class="bg-slate-900/90 p-2 rounded-lg flex justify-between">
+                            <span class="text-blue-300">Alt + Click</span>
+                            <span class="text-slate-400">Multi-cursor Editing</span>
+                        </div>
+                        <div class="bg-slate-900/90 p-2 rounded-lg flex justify-between">
+                            <span class="text-blue-300">Ctrl + `</span>
+                            <span class="text-slate-400">Toggle Terminal</span>
+                        </div>
+                        <div class="bg-slate-900/90 p-2 rounded-lg flex justify-between">
+                            <span class="text-blue-300">Ctrl + P</span>
+                            <span class="text-slate-400">Quick File Navigation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Recommended Extensions -->
+                <div class="assignment-card glass-card rounded-2xl p-5" data-category="vs" data-keywords="vs code extensions live server prettier auto rename tag gitlens">
+                    <div class="flex items-center gap-2 text-blue-400 font-bold text-sm mb-3">
+                        <i class="fa-solid fa-puzzle-piece"></i>
+                        <span>Top Extensions for Web Dev</span>
+                    </div>
+                    <div class="space-y-2 text-xs text-slate-300">
+                        <div class="bg-slate-900/90 p-2 rounded-lg">
+                            <strong class="text-blue-300">Live Server</strong> - Instant local preview with hot reload.
+                        </div>
+                        <div class="bg-slate-900/90 p-2 rounded-lg">
+                            <strong class="text-blue-300">Prettier</strong> - Opinionated automatic code formatter.
+                        </div>
+                        <div class="bg-slate-900/90 p-2 rounded-lg">
+                            <strong class="text-blue-300">Auto Rename Tag</strong> - Synchronized HTML/XML tag renaming.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- CATEGORY 8: CS (COMPUTER SCIENCE CONCEPTS) -->
+        <!-- ========================================== -->
+        <section id="category-cs" class="category-section space-y-6">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-lg border border-rose-500/30">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white tracking-tight">CS (Computer Science & Web Architecture)</h2>
+                        <p class="text-xs text-slate-400">Fundamental web concepts, HTTP lifecycle, DOM rendering, and core knowledge</p>
+                    </div>
+                </div>
+                <span class="text-xs font-mono bg-slate-900 px-3 py-1 rounded-full text-slate-400 border border-slate-800">Core Concepts</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                
+                <!-- CS Card 1 -->
+                <div class="assignment-card glass-card rounded-2xl p-5" data-category="cs" data-keywords="cs computer science client server http request response dns ip architecture">
+                    <div class="flex items-center gap-2 text-rose-400 font-bold text-sm mb-3">
+                        <i class="fa-solid fa-server"></i>
+                        <span>Client-Server & HTTP Lifecycle</span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                        The browser (Client) resolves domain names via DNS to IP addresses and issues HTTP/HTTPS requests (GET, POST) to web servers, receiving HTML, CSS, and JS payloads in return.
+                    </p>
+                    <div class="text-[11px] font-mono bg-slate-900/90 p-2.5 rounded-lg text-rose-300 border border-slate-800">
+                        Client ⇄ DNS ⇄ HTTP Request ⇄ Web Server ⇄ Render
+                    </div>
+                </div>
+
+                <!-- CS Card 2 -->
+                <div class="assignment-card glass-card rounded-2xl p-5" data-category="cs" data-keywords="cs computer science dom tree cssom render tree reflow repaint">
+                    <div class="flex items-center gap-2 text-rose-400 font-bold text-sm mb-3">
+                        <i class="fa-solid fa-sitemap"></i>
+                        <span>DOM & Rendering Pipeline</span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                        Browsers parse raw HTML bytes into tokens, construct the Document Object Model (DOM) tree, combine it with CSSOM to build the Render Tree, calculate layout geometry, and paint pixels.
+                    </p>
+                    <div class="text-[11px] font-mono bg-slate-900/90 p-2.5 rounded-lg text-rose-300 border border-slate-800">
+                        HTML → DOM + CSSOM → Render Tree → Layout → Paint
+                    </div>
+                </div>
+
+                <!-- CS Card 3 -->
+                <div class="assignment-card glass-card rounded-2xl p-5" data-category="cs" data-keywords="cs computer science frontend roadmap web standards git semantic seo">
+                    <div class="flex items-center gap-2 text-rose-400 font-bold text-sm mb-3">
+                        <i class="fa-solid fa-compass"></i>
+                        <span>Frontend Engineering Standards</span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                        Core pillars of modern frontend: Semantic HTML for accessibility (A11y) & SEO, modular responsive CSS with Flex/Grid, modern JavaScript (ES6+), and version control with Git.
+                    </p>
+                    <div class="text-[11px] font-mono bg-slate-900/90 p-2.5 rounded-lg text-rose-300 border border-slate-800">
+                        Accessibility • Responsiveness • Performance • Clean Code
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800/80 py-10 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+            <div class="flex justify-center items-center gap-3">
+                <div class="w-7 h-7 rounded-lg bg-teal-500/20 text-teal-400 flex items-center justify-center text-xs font-bold">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <span class="font-extrabold text-slate-200">Frontend Assignment Repository</span>
+            </div>
+            <p class="text-xs text-slate-400 max-w-xl mx-auto">
+                Built with semantic HTML5, utility CSS, and modular structures. All assignment files are hosted and compatible with GitHub Pages.
+            </p>
+            <div class="text-xs text-slate-500 font-mono pt-2">
+                © 2026 Rajitha | Frontend Development Track
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Filtering & Search Script -->
+    <script>
+        let currentCategory = 'all';
+
+        function setCategoryFilter(category) {
+            currentCategory = category;
+
+            // Update tab pills active styling
+            document.querySelectorAll('.category-pill').forEach(pill => {
+                pill.classList.remove('active-tab');
+                pill.classList.add('bg-slate-800', 'text-slate-300');
+            });
+            const activePill = document.getElementById('pill-' + category);
+            if (activePill) {
+                activePill.classList.add('active-tab');
+                activePill.classList.remove('bg-slate-800', 'text-slate-300');
+            }
+
+            // Show / hide category sections
+            const sections = document.querySelectorAll('.category-section');
+            sections.forEach(section => {
+                const sectionId = section.id.replace('category-', '');
+                if (category === 'all' || sectionId === category) {
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+
+            // Re-apply search filter if query exists
+            filterAssignments();
+        }
+
+        function filterAssignments() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const clearBtn = document.getElementById('clearSearch');
+            const notification = document.getElementById('searchNotification');
+            const resultText = document.getElementById('searchResultText');
+
+            if (query.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+
+            const cards = document.querySelectorAll('.assignment-card');
+            let matchCount = 0;
+
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                const keywords = (card.getAttribute('data-keywords') || '') + ' ' + card.innerText.toLowerCase();
+
+                const matchesCategory = (currentCategory === 'all' || cardCategory === currentCategory);
+                const matchesQuery = (query === '' || keywords.includes(query));
+
+                if (matchesCategory && matchesQuery) {
+                    card.classList.remove('hidden');
+                    matchCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            // Update sections visibility when searching
+            if (query.length > 0) {
+                document.querySelectorAll('.category-section').forEach(section => {
+                    const visibleCards = section.querySelectorAll('.assignment-card:not(.hidden)');
+                    if (visibleCards.length > 0) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+
+                notification.classList.remove('hidden');
+                resultText.textContent = `Found ${matchCount} matching assignment(s) for "${query}"`;
+            } else {
+                notification.classList.add('hidden');
+                // Restore category selection view
+                document.querySelectorAll('.category-section').forEach(section => {
+                    const sectionId = section.id.replace('category-', '');
+                    if (currentCategory === 'all' || sectionId === currentCategory) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+            }
+        }
+
+        function resetSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearSearch').classList.add('hidden');
+            document.getElementById('searchNotification').classList.add('hidden');
+            filterAssignments();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Day 1 - Variables & Fundamentals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-slate-800/80 border-b border-slate-700 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <a href="../../index.html" class="p-2 bg-slate-700 hover:bg-amber-500 hover:text-slate-900 text-amber-400 rounded-lg transition" title="Back to Main Portal">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <div>
+                    <h1 class="text-xl font-bold text-amber-400 flex items-center gap-2">
+                        <i class="fa-brands fa-js"></i> JavaScript Day 1
+                    </h1>
+                    <p class="text-xs text-slate-400">Variables (var, let, const) & Fundamentals Q&A</p>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <a href="../../index.html" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg text-sm transition">
+                    <i class="fa-solid fa-house mr-1"></i> Main Portal
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-10">
+        
+        <!-- Quick Summary Card -->
+        <section class="bg-gradient-to-r from-amber-500/10 via-slate-800 to-slate-800 p-6 rounded-2xl border border-amber-500/20">
+            <h2 class="text-2xl font-bold text-amber-400 mb-2">Day 1: Core Fundamentals Overview</h2>
+            <p class="text-slate-300 mb-4">
+                Introduction to JavaScript keywords <code class="text-amber-300 bg-slate-900 px-2 py-0.5 rounded">var</code>, <code class="text-sky-300 bg-slate-900 px-2 py-0.5 rounded">let</code>, and <code class="text-emerald-300 bg-slate-900 px-2 py-0.5 rounded">const</code>, variable naming conventions, and fundamental interview questions.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700">
+                    <div class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-1">var Keyword</div>
+                    <p class="text-sm text-slate-300">Function-scoped. Can be redeclared and reassigned. Hoisted with default <code class="text-xs">undefined</code>.</p>
+                </div>
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700">
+                    <div class="text-xs font-semibold text-sky-400 uppercase tracking-wider mb-1">let Keyword</div>
+                    <p class="text-sm text-slate-300">Block-scoped (ES6). Can be reassigned but cannot be redeclared in same scope.</p>
+                </div>
+                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700">
+                    <div class="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-1">const Keyword</div>
+                    <p class="text-sm text-slate-300">Block-scoped (ES6). Constant reference; cannot be reassigned or redeclared.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task 1 Section -->
+        <section class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden shadow-xl">
+            <div class="p-6 border-b border-slate-700 flex flex-wrap justify-between items-center gap-4 bg-slate-800/50">
+                <div>
+                    <span class="px-3 py-1 bg-amber-500/20 text-amber-400 rounded-full text-xs font-semibold uppercase">Task 1</span>
+                    <h3 class="text-xl font-bold text-white mt-1">Variable Declarations Practice (<code class="text-amber-400">Task1.js</code>)</h3>
+                </div>
+                <div class="text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700">
+                    <i class="fa-regular fa-file-code mr-1 text-amber-400"></i> JAVA SCRIPT/Day1/Task1.js
+                </div>
+            </div>
+
+            <div class="p-6">
+                <!-- Tabs -->
+                <div class="flex space-x-2 border-b border-slate-700 mb-6 pb-2">
+                    <button onclick="showTab('var')" id="tab-var" class="px-4 py-2 rounded-lg text-sm font-medium bg-amber-500 text-slate-900 transition">
+                        var Declarations (48)
+                    </button>
+                    <button onclick="showTab('let')" id="tab-let" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white transition">
+                        let Declarations (48)
+                    </button>
+                    <button onclick="showTab('const')" id="tab-const" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white transition">
+                        const Declarations (48)
+                    </button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div id="content-var" class="tab-content">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-h-96 overflow-y-auto pr-2">
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var userName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var phoneNumber;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var studentName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var employName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var movieName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var fuelType;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var houseNumber;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var cityName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var firstName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var emailId;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var productName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var priceAmount;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var brandName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var ratingNumber;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var languageType;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var employeeName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var salaryMonth;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var companyName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var subjectName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var markSheet;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var examYear;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var foodName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var quantitySize;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var carName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var speedCar;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var websiteName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var userCount;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var bookName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var pageCount;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var mobileName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var storageBox;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var operatingSystem;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var projectName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var teamSize;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var technologyName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var developerName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var experienceYear;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var departmentId;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var courseName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var collegeName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var gameName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-amber-300">var accountName;</div>
+                    </div>
+                </div>
+
+                <div id="content-let" class="tab-content hidden">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-h-96 overflow-y-auto pr-2">
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let customerName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let homeTown;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let nickName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let teacherName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let userEmail;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let contactNumber;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let itemName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let totalAmount;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let companyName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let actorName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let score;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let motherTongue;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let managerName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let monthlyIncome;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let officeName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let topicName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let totalMarks;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let birthYear;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let dishName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let itemCount;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let vehicleName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let distance;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let engineType;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let pageTitle;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let visitorCount;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let authorName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let chapterCount;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let deviceName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let memorySize;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let systemName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let taskName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let memberCount;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let skillName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let programmerName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let workExperience;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let jobRole;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let streetName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let studentGender;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let personAge;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let sectionName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let programName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let instituteName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let stateName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let nationName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let favoriteHobby;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let favoriteColor;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let sportName;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-sky-300">let profileName;</div>
+                    </div>
+                </div>
+
+                <div id="content-const" class="tab-content hidden">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-h-96 overflow-y-auto pr-2">
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const accountId = 101;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const fullName = "Rajitha";</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const birthDate = "2006-08-18";</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const homeAddress = "Main Road";</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const postalCode = 627001;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const contactEmail = "user@mail.com";</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const orderNumber = 9876;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const productId = 501;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const categoryName = "Electronics";</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const itemPrice = 499;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const discountRate = 0.1;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const totalCost = 449;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const customerId = 882;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const employeeId = 1204;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const managerId = 1001;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const branchName = "Chennai";</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const officeAddress = "IT Park";</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const joiningDate = "2026-01-10";</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const projectId = 301;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const projectTitle = "Frontend App";</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const taskId = 104;</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const taskTitle = "Variables";</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const courseId = "CS201";</div>
+                        <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-700/60 font-mono text-sm text-emerald-300">const universityName = "MSU";</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task 2 Section -->
+        <section class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden shadow-xl">
+            <div class="p-6 border-b border-slate-700 flex flex-wrap justify-between items-center gap-4 bg-slate-800/50">
+                <div>
+                    <span class="px-3 py-1 bg-sky-500/20 text-sky-400 rounded-full text-xs font-semibold uppercase">Task 2</span>
+                    <h3 class="text-xl font-bold text-white mt-1">JavaScript Interview Questions & Answers (<code class="text-sky-400">Task2.js</code>)</h3>
+                </div>
+                <div class="text-xs text-slate-400 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700">
+                    <i class="fa-regular fa-file-code mr-1 text-sky-400"></i> JAVA SCRIPT/Day1/Task2.js
+                </div>
+            </div>
+
+            <div class="p-6 space-y-4">
+                <!-- Q1 -->
+                <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-700/70">
+                    <h4 class="font-bold text-amber-400 text-base mb-2">1. What is JavaScript?</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">JavaScript is a programming language used to make web pages interactive and dynamic.</p>
+                </div>
+                <!-- Q2 -->
+                <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-700/70">
+                    <h4 class="font-bold text-amber-400 text-base mb-2">2. What is a variable?</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">A variable is a named storage location used to store data.</p>
+                </div>
+                <!-- Q3 -->
+                <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-700/70">
+                    <h4 class="font-bold text-amber-400 text-base mb-2">3. What is variable declaration?</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">Variable declaration means creating a variable using <code class="text-amber-300">var</code>, <code class="text-sky-300">let</code>, or <code class="text-emerald-300">const</code>.</p>
+                </div>
+                <!-- Q4 -->
+                <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-700/70">
+                    <h4 class="font-bold text-amber-400 text-base mb-2">4. What is initialization?</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">Initialization means giving an initial value to a variable when it is created.</p>
+                </div>
+                <!-- Q5 -->
+                <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-700/70">
+                    <h4 class="font-bold text-amber-400 text-base mb-2">5. What is an assignment operator?</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">The assignment operator (<code class="text-amber-300">=</code>) is used to assign a value to a variable.</p>
+                </div>
+                <!-- Q6 -->
+                <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-700/70">
+                    <h4 class="font-bold text-amber-400 text-base mb-2">6. What are var, let and const?</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed"><code class="text-amber-300">var</code>, <code class="text-sky-300">let</code>, and <code class="text-emerald-300">const</code> are keywords used to declare variables in JavaScript.</p>
+                </div>
+                <!-- Q7 -->
+                <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-700/70">
+                    <h4 class="font-bold text-amber-400 text-base mb-2">7. What is the difference between var, let and const?</h4>
+                    <div class="text-slate-300 text-sm leading-relaxed space-y-1">
+                        <p>• <strong class="text-amber-400">var:</strong> is function-scoped and can be redeclared and reassigned.</p>
+                        <p>• <strong class="text-sky-400">let:</strong> is block-scoped and can be reassigned but cannot be redeclared in the same scope.</p>
+                        <p>• <strong class="text-emerald-400">const:</strong> is block-scoped and cannot be reassigned or redeclared.</p>
+                    </div>
+                </div>
+                <!-- Q8 -->
+                <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-700/70">
+                    <h4 class="font-bold text-amber-400 text-base mb-2">8. What is ES6?</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">ES6 stands for ECMAScript 2015. It introduced modern features like <code class="text-sky-300">let</code>, <code class="text-emerald-300">const</code>, arrow functions, classes, and template literals.</p>
+                </div>
+                <!-- Q9 -->
+                <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-700/70">
+                    <h4 class="font-bold text-amber-400 text-base mb-2">9. What is a JavaScript Engine?</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">A JavaScript Engine is a program that reads and executes JavaScript code.</p>
+                </div>
+                <!-- Q10 -->
+                <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-700/70">
+                    <h4 class="font-bold text-amber-400 text-base mb-2">10. What is V8?</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">V8 is a high-performance open-source JavaScript engine developed by Google, used in Google Chrome and Node.js to execute JavaScript code.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-slate-500 text-sm border-t border-slate-800">
+        <p>© 2026 Frontend Assignments Portal | JavaScript Day 1</p>
+    </footer>
+
+    <script>
+        function showTab(type) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('content-' + type).classList.remove('hidden');
+
+            const tabs = ['var', 'let', 'const'];
+            tabs.forEach(t => {
+                const btn = document.getElementById('tab-' + t);
+                if (t === type) {
+                    btn.className = 'px-4 py-2 rounded-lg text-sm font-medium bg-amber-500 text-slate-900 transition';
+                } else {
+                    btn.className = 'px-4 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white transition';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Day 2 - Practice Assignments Runner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-slate-800/80 border-b border-slate-700 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <a href="../../../index.html" class="p-2 bg-slate-700 hover:bg-amber-500 hover:text-slate-900 text-amber-400 rounded-lg transition" title="Back to Main Portal">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <div>
+                    <h1 class="text-xl font-bold text-amber-400 flex items-center gap-2">
+                        <i class="fa-brands fa-js"></i> JavaScript Day 2 Practice Assignments
+                    </h1>
+                    <p class="text-xs text-slate-400">Interactive Code Viewer & Console Output Runner</p>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <a href="../index.html" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg text-sm transition">
+                    <i class="fa-solid fa-layer-group mr-1"></i> Day 2 Hub
+                </a>
+                <a href="../../../index.html" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-lg text-sm transition">
+                    <i class="fa-solid fa-house mr-1"></i> Main Portal
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-8">
+        
+        <!-- Assignment Selector Grid -->
+        <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            <button onclick="loadScript('var')" id="btn-var" class="script-btn p-4 rounded-xl border bg-amber-500 text-slate-900 border-amber-400 font-semibold text-center transition flex flex-col items-center justify-center gap-1 shadow-lg">
+                <i class="fa-solid fa-code text-lg"></i>
+                <span class="text-xs font-mono">var.js</span>
+            </button>
+            <button onclick="loadScript('let')" id="btn-let" class="script-btn p-4 rounded-xl border bg-slate-800 text-slate-300 border-slate-700 hover:border-sky-500 font-semibold text-center transition flex flex-col items-center justify-center gap-1">
+                <i class="fa-solid fa-code text-lg"></i>
+                <span class="text-xs font-mono">let.js</span>
+            </button>
+            <button onclick="loadScript('const')" id="btn-const" class="script-btn p-4 rounded-xl border bg-slate-800 text-slate-300 border-slate-700 hover:border-emerald-500 font-semibold text-center transition flex flex-col items-center justify-center gap-1">
+                <i class="fa-solid fa-code text-lg"></i>
+                <span class="text-xs font-mono">const.js</span>
+            </button>
+            <button onclick="loadScript('num')" id="btn-num" class="script-btn p-4 rounded-xl border bg-slate-800 text-slate-300 border-slate-700 hover:border-purple-500 font-semibold text-center transition flex flex-col items-center justify-center gap-1">
+                <i class="fa-solid fa-calculator text-lg"></i>
+                <span class="text-xs font-mono">console num.js</span>
+            </button>
+            <button onclick="loadScript('str')" id="btn-str" class="script-btn p-4 rounded-xl border bg-slate-800 text-slate-300 border-slate-700 hover:border-rose-500 font-semibold text-center transition flex flex-col items-center justify-center gap-1">
+                <i class="fa-solid fa-quote-left text-lg"></i>
+                <span class="text-xs font-mono">console string.js</span>
+            </button>
+            <button onclick="loadScript('bool')" id="btn-bool" class="script-btn p-4 rounded-xl border bg-slate-800 text-slate-300 border-slate-700 hover:border-teal-500 font-semibold text-center transition flex flex-col items-center justify-center gap-1">
+                <i class="fa-solid fa-toggle-on text-lg"></i>
+                <span class="text-xs font-mono">consoleBoolean.js</span>
+            </button>
+        </section>
+
+        <!-- Runner & Viewer Grid -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            
+            <!-- Source Code Viewer -->
+            <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden shadow-xl flex flex-col">
+                <div class="p-4 bg-slate-800/80 border-b border-slate-700 flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-regular fa-file-lines text-amber-400"></i>
+                        <span id="current-filename" class="font-mono text-sm font-semibold text-slate-200">var.js</span>
+                    </div>
+                    <span class="text-xs text-slate-400 bg-slate-900 px-2.5 py-1 rounded">Source Code</span>
+                </div>
+                <div class="p-4 flex-1 bg-slate-950 font-mono text-xs overflow-auto max-h-[460px]">
+                    <pre><code id="code-display" class="text-emerald-400 leading-relaxed whitespace-pre"></code></pre>
+                </div>
+            </div>
+
+            <!-- Live Console Runner Output -->
+            <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden shadow-xl flex flex-col">
+                <div class="p-4 bg-slate-800/80 border-b border-slate-700 flex justify-between items-center">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-terminal text-sky-400"></i>
+                        <span class="font-mono text-sm font-semibold text-slate-200">Interactive Console Output</span>
+                    </div>
+                    <button onclick="runCurrentScript()" class="px-3 py-1 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold rounded text-xs transition flex items-center gap-1">
+                        <i class="fa-solid fa-play"></i> Re-Run
+                    </button>
+                </div>
+                <div class="p-4 flex-1 bg-slate-950 font-mono text-xs overflow-auto max-h-[460px] text-slate-200 space-y-1" id="console-output">
+                    <!-- Logs inserted dynamically -->
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-slate-500 text-sm border-t border-slate-800 mt-12">
+        <p>© 2026 Frontend Assignments Portal | JavaScript Day 2 Assignments</p>
+    </footer>
+
+    <!-- Scripts Data -->
+    <script>
+        const scriptsData = {
+            'var': {
+                name: 'var.js',
+                code: `var studentName = "Rajitha";
+var cityName = "Tirunelveli";
+var courseName = "Computer Science";
+var collegeName = "TDMNS College";
+var subjectName = "JavaScript";
+var favoriteColor = "Blue";
+var favoriteFood = "Biryani";
+var favoritePlace = "Chennai";
+var friendName = "Anu";
+var teacherName = "Priya";
+var mobileBrand = "Samsung";
+var laptopBrand = "Dell";
+var programmingLanguage = "JavaScript";
+var projectName = "Bus Management";
+var jobRole = "Software Developer";
+var hobbyName = "Reading";
+var browserName = "Chrome";
+var countryName = "India";
+
+console.log("studentName:", studentName);
+console.log("cityName:", cityName);
+console.log("courseName:", courseName);
+console.log("collegeName:", collegeName);
+console.log("subjectName:", subjectName);
+console.log("favoriteColor:", favoriteColor);
+console.log("favoriteFood:", favoriteFood);
+console.log("favoritePlace:", favoritePlace);
+console.log("friendName:", friendName);
+console.log("teacherName:", teacherName);
+console.log("mobileBrand:", mobileBrand);
+console.log("laptopBrand:", laptopBrand);
+console.log("programmingLanguage:", programmingLanguage);
+console.log("projectName:", projectName);
+console.log("jobRole:", jobRole);
+console.log("hobbyName:", hobbyName);
+console.log("browserName:", browserName);
+console.log("countryName:", countryName);`,
+                run: function(log) {
+                    var studentName = "Rajitha";
+                    var cityName = "Tirunelveli";
+                    var courseName = "Computer Science";
+                    var collegeName = "TDMNS College";
+                    var subjectName = "JavaScript";
+                    var favoriteColor = "Blue";
+                    var favoriteFood = "Biryani";
+                    var favoritePlace = "Chennai";
+                    var friendName = "Anu";
+                    var teacherName = "Priya";
+                    var mobileBrand = "Samsung";
+                    var laptopBrand = "Dell";
+                    var programmingLanguage = "JavaScript";
+                    var projectName = "Bus Management";
+                    var jobRole = "Software Developer";
+                    var hobbyName = "Reading";
+                    var browserName = "Chrome";
+                    var countryName = "India";
+
+                    log("studentName: " + studentName);
+                    log("cityName: " + cityName);
+                    log("courseName: " + courseName);
+                    log("collegeName: " + collegeName);
+                    log("subjectName: " + subjectName);
+                    log("favoriteColor: " + favoriteColor);
+                    log("favoriteFood: " + favoriteFood);
+                    log("favoritePlace: " + favoritePlace);
+                    log("friendName: " + friendName);
+                    log("teacherName: " + teacherName);
+                    log("mobileBrand: " + mobileBrand);
+                    log("laptopBrand: " + laptopBrand);
+                    log("programmingLanguage: " + programmingLanguage);
+                    log("projectName: " + projectName);
+                    log("jobRole: " + jobRole);
+                    log("hobbyName: " + hobbyName);
+                    log("browserName: " + browserName);
+                    log("countryName: " + countryName);
+                }
+            },
+            'let': {
+                name: 'let.js',
+                code: `let studentAge = 20;
+let examMark = 85;
+let productPrice = 500;
+let monthlySalary = 25000;
+let currentYear = 2026;
+let birthMonth = 8;
+let todayDate = 18;
+let totalCount = 10;
+let testScore = 95;
+let finalTotal = 100;
+let luckyNumber = 50;
+let classRank = 5;
+let studentHeight = 160;
+let bodyWeight = 55;
+let bookPage = 20;
+let itemQuantity = 15;
+let travelDistance = 25;
+let examPercentage = 90;
+
+console.log("studentAge:", studentAge);
+console.log("examMark:", examMark);
+console.log("productPrice:", productPrice);
+console.log("monthlySalary:", monthlySalary);
+console.log("currentYear:", currentYear);
+console.log("birthMonth:", birthMonth);
+console.log("todayDate:", todayDate);
+console.log("totalCount:", totalCount);
+console.log("testScore:", testScore);
+console.log("finalTotal:", finalTotal);
+console.log("luckyNumber:", luckyNumber);
+console.log("classRank:", classRank);
+console.log("studentHeight:", studentHeight);
+console.log("bodyWeight:", bodyWeight);
+console.log("bookPage:", bookPage);
+console.log("itemQuantity:", itemQuantity);
+console.log("travelDistance:", travelDistance);
+console.log("examPercentage:", examPercentage);`,
+                run: function(log) {
+                    let studentAge = 20;
+                    let examMark = 85;
+                    let productPrice = 500;
+                    let monthlySalary = 25000;
+                    let currentYear = 2026;
+                    let birthMonth = 8;
+                    let todayDate = 18;
+                    let totalCount = 10;
+                    let testScore = 95;
+                    let finalTotal = 100;
+                    let luckyNumber = 50;
+                    let classRank = 5;
+                    let studentHeight = 160;
+                    let bodyWeight = 55;
+                    let bookPage = 20;
+                    let itemQuantity = 15;
+                    let travelDistance = 25;
+                    let examPercentage = 90;
+
+                    log("studentAge: " + studentAge);
+                    log("examMark: " + examMark);
+                    log("productPrice: " + productPrice);
+                    log("monthlySalary: " + monthlySalary);
+                    log("currentYear: " + currentYear);
+                    log("birthMonth: " + birthMonth);
+                    log("todayDate: " + todayDate);
+                    log("totalCount: " + totalCount);
+                    log("testScore: " + testScore);
+                    log("finalTotal: " + finalTotal);
+                    log("luckyNumber: " + luckyNumber);
+                    log("classRank: " + classRank);
+                    log("studentHeight: " + studentHeight);
+                    log("bodyWeight: " + bodyWeight);
+                    log("bookPage: " + bookPage);
+                    log("itemQuantity: " + itemQuantity);
+                    log("travelDistance: " + travelDistance);
+                    log("examPercentage: " + examPercentage);
+                }
+            },
+            'const': {
+                name: 'const.js',
+                code: `const isStudent = true;
+const isActive = true;
+const isLoggedIn = true;
+const isAvailable = true;
+const isCompleted = true;
+const isVerified = true;
+const isOnline = true;
+const isOpen = true;
+const isReady = true;
+const isValid = true;
+
+const isPlaced = false;
+const isClosed = false;
+const isExpired = false;
+const isDeleted = false;
+const isBlocked = false;
+const isCancelled = false;
+const isFinished = false;
+const isAvailableNow = false;
+const isVerifiedUser = false;
+const isActiveUser = false;
+
+console.log("isStudent:", isStudent);
+console.log("isActive:", isActive);
+console.log("isLoggedIn:", isLoggedIn);
+console.log("isAvailable:", isAvailable);
+console.log("isCompleted:", isCompleted);
+console.log("isVerified:", isVerified);
+console.log("isOnline:", isOnline);
+console.log("isOpen:", isOpen);
+console.log("isReady:", isReady);
+console.log("isValid:", isValid);
+console.log("isPlaced:", isPlaced);
+console.log("isClosed:", isClosed);
+console.log("isExpired:", isExpired);
+console.log("isDeleted:", isDeleted);
+console.log("isBlocked:", isBlocked);
+console.log("isCancelled:", isCancelled);
+console.log("isFinished:", isFinished);
+console.log("isAvailableNow:", isAvailableNow);
+console.log("isVerifiedUser:", isVerifiedUser);
+console.log("isActiveUser:", isActiveUser);`,
+                run: function(log) {
+                    const isStudent = true;
+                    const isActive = true;
+                    const isLoggedIn = true;
+                    const isAvailable = true;
+                    const isCompleted = true;
+                    const isVerified = true;
+                    const isOnline = true;
+                    const isOpen = true;
+                    const isReady = true;
+                    const isValid = true;
+                    const isPlaced = false;
+                    const isClosed = false;
+                    const isExpired = false;
+                    const isDeleted = false;
+                    const isBlocked = false;
+                    const isCancelled = false;
+                    const isFinished = false;
+                    const isAvailableNow = false;
+                    const isVerifiedUser = false;
+                    const isActiveUser = false;
+
+                    log("isStudent: " + isStudent);
+                    log("isActive: " + isActive);
+                    log("isLoggedIn: " + isLoggedIn);
+                    log("isAvailable: " + isAvailable);
+                    log("isCompleted: " + isCompleted);
+                    log("isVerified: " + isVerified);
+                    log("isOnline: " + isOnline);
+                    log("isOpen: " + isOpen);
+                    log("isReady: " + isReady);
+                    log("isValid: " + isValid);
+                    log("isPlaced: " + isPlaced);
+                    log("isClosed: " + isClosed);
+                    log("isExpired: " + isExpired);
+                    log("isDeleted: " + isDeleted);
+                    log("isBlocked: " + isBlocked);
+                    log("isCancelled: " + isCancelled);
+                    log("isFinished: " + isFinished);
+                    log("isAvailableNow: " + isAvailableNow);
+                    log("isVerifiedUser: " + isVerifiedUser);
+                    log("isActiveUser: " + isActiveUser);
+                }
+            },
+            'num': {
+                name: 'console num.js',
+                code: `console.log(10);
+console.log(25);
+console.log(50);
+console.log(75);
+console.log(100);
+console.log(125);
+console.log(250);
+console.log(500);
+console.log(750);
+console.log(1000);
+console.log(1500);
+console.log(2000);
+console.log(2500);
+console.log(5000);
+console.log(7500);
+console.log(10000);
+console.log(15000);
+console.log(25000);
+console.log(50000);
+console.log(100000);`,
+                run: function(log) {
+                    const nums = [10, 25, 50, 75, 100, 125, 250, 500, 750, 1000, 1500, 2000, 2500, 5000, 7500, 10000, 15000, 25000, 50000, 100000];
+                    nums.forEach(n => log(n));
+                }
+            },
+            'str': {
+                name: 'console string.js',
+                code: `console.log("This is JavaScript");
+console.log("I am learning JavaScript");
+console.log("JavaScript is easy to learn");
+console.log("I am practicing coding");
+console.log("I like programming");
+console.log("I am a computer science student");
+console.log("Coding is interesting");
+console.log("I am improving my skills");
+console.log("JavaScript is a programming language");
+console.log("I enjoy learning new things");
+console.log("I practice JavaScript every day");
+console.log("I want to become a developer");
+console.log("Learning coding is useful");
+console.log("I am interested in web development");
+console.log("HTML is used to create webpages");
+console.log("CSS is used to style webpages");
+console.log("JavaScript makes webpages interactive");
+console.log("I am working on my project");
+console.log("I am becoming a better programmer");
+console.log("Practice makes programming easier");`,
+                run: function(log) {
+                    const msgs = [
+                        "This is JavaScript", "I am learning JavaScript", "JavaScript is easy to learn",
+                        "I am practicing coding", "I like programming", "I am a computer science student",
+                        "Coding is interesting", "I am improving my skills", "JavaScript is a programming language",
+                        "I enjoy learning new things", "I practice JavaScript every day", "I want to become a developer",
+                        "Learning coding is useful", "I am interested in web development", "HTML is used to create webpages",
+                        "CSS is used to style webpages", "JavaScript makes webpages interactive", "I am working on my project",
+                        "I am becoming a better programmer", "Practice makes programming easier"
+                    ];
+                    msgs.forEach(m => log('"' + m + '"'));
+                }
+            },
+            'bool': {
+                name: 'consoleBoolean.js',
+                code: `const isStudent = true;
+const isActive = true;
+const isLoggedIn = true;
+const isAvailable = true;
+const isCompleted = true;
+const isVerified = true;
+const isOnline = true;
+const isOpen = true;
+const isReady = true;
+const isValid = true;
+
+const isPlaced = false;
+const isClosed = false;
+const isExpired = false;
+const isDeleted = false;
+const isBlocked = false;
+const isCancelled = false;
+const isFinished = false;
+const isAvailableNow = false;
+const isVerifiedUser = false;
+const isActiveUser = false;
+
+console.log("isStudent:", isStudent);
+console.log("isActive:", isActive);
+console.log("isLoggedIn:", isLoggedIn);
+console.log("isAvailable:", isAvailable);
+console.log("isCompleted:", isCompleted);
+console.log("isVerified:", isVerified);
+console.log("isOnline:", isOnline);
+console.log("isOpen:", isOpen);
+console.log("isReady:", isReady);
+console.log("isValid:", isValid);
+console.log("isPlaced:", isPlaced);
+console.log("isClosed:", isClosed);
+console.log("isExpired:", isExpired);
+console.log("isDeleted:", isDeleted);
+console.log("isBlocked:", isBlocked);
+console.log("isCancelled:", isCancelled);
+console.log("isFinished:", isFinished);
+console.log("isAvailableNow:", isAvailableNow);
+console.log("isVerifiedUser:", isVerifiedUser);
+console.log("isActiveUser:", isActiveUser);`,
+                run: function(log) {
+                    scriptsData['const'].run(log);
+                }
+            }
+        };
+
+        let currentScriptKey = 'var';
+
+        function loadScript(key) {
+            currentScriptKey = key;
+            const data = scriptsData[key];
+            document.getElementById('current-filename').textContent = data.name;
+            document.getElementById('code-display').textContent = data.code;
+
+            // Update button active state
+            document.querySelectorAll('.script-btn').forEach(btn => {
+                btn.className = 'script-btn p-4 rounded-xl border bg-slate-800 text-slate-300 border-slate-700 font-semibold text-center transition flex flex-col items-center justify-center gap-1';
+            });
+            const activeBtn = document.getElementById('btn-' + key);
+            activeBtn.className = 'script-btn p-4 rounded-xl border bg-amber-500 text-slate-900 border-amber-400 font-semibold text-center transition flex flex-col items-center justify-center gap-1 shadow-lg';
+
+            runCurrentScript();
+        }
+
+        function runCurrentScript() {
+            const outputBox = document.getElementById('console-output');
+            outputBox.innerHTML = '';
+            
+            const logFunction = function(msg) {
+                const line = document.createElement('div');
+                line.className = 'flex items-start gap-2 py-0.5 border-b border-slate-900/60 font-mono';
+                line.innerHTML = `<span class="text-slate-600 select-none">&gt;</span> <span class="text-sky-300">${msg}</span>`;
+                outputBox.appendChild(line);
+            };
+
+            const data = scriptsData[currentScriptKey];
+            data.run(logFunction);
+        }
+
+        // Initialize on load
+        loadScript('var');
+    </script>
+</body>
+</html>
