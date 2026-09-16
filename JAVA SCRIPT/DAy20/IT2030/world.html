@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A World Without IT — What If Technology Disappeared?</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="An interactive comparison of modern life with Information Technology versus an analog world where IT suddenly disappears.">
+</head>
+<body>
+
+    <!-- Ambient Futuristic Particle Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Global Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            IT<span class="logo-badge">2030</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">IT in 2030</a></li>
+            <li><a href="world.html" class="active">World Without IT</a></li>
+            <li><a href="mylife.html">My Life Without IT</a></li>
+        </ul>
+
+        <button class="menu-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content reveal">
+            <div class="badge badge-alert">
+                <span class="badge-pulse"></span>
+                Thought Experiment Simulator
+            </div>
+            
+            <h1>
+                WHAT IF IT <br>
+                <span class="gradient-text">DID NOT EXIST?</span>
+            </h1>
+
+            <p class="hero-description">
+                Information Technology is the silent, invisible pulse of modern civilization. We only notice how deeply we depend on it when the connection breaks. Flip the master switch below to witness the contrast between our digital world and an analog collapse.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#simulator" class="btn btn-primary">
+                    Try the IT Switch ↓
+                </a>
+                <a href="mylife.html" class="btn btn-outline">
+                    See My Alternative Career →
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-visual reveal">
+            <div class="orb"></div>
+            <div class="hero-card-floating">
+                <div class="year-tag" style="font-size: 3.2rem; color: var(--amber-offline);">OFFLINE?</div>
+                <p class="tagline">Global Infrastructure Comparison</p>
+                
+                <div class="stat-pills">
+                    <div class="stat-pill">
+                        <span class="num">8</span>
+                        <span class="label">Sectors Analyzed</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="num">100%</span>
+                        <span class="label">Daily Dependency</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="num">0</span>
+                        <span class="label">Digital Records</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="num">Manual</span>
+                        <span class="label">Paper & Cash</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="simulator">
+        <!-- Interactive Master IT ON / IT OFF Switch Bar -->
+        <section style="padding-top: 20px; padding-bottom: 20px;">
+            <div class="master-switch-bar reveal">
+                <div class="switch-label-wrap">
+                    <span class="switch-title">
+                        ⚡ Global IT Status Controller
+                    </span>
+                    <span class="switch-desc" id="globalStatusDesc">
+                        <span style="color: var(--cyan-primary);">● DIGITAL NETWORK OPERATIONAL</span> — Toggle switch to simulate society without IT.
+                    </span>
+                </div>
+
+                <div class="toggle-switch-container">
+                    <span class="toggle-state-text off-text">OFF</span>
+                    <label class="switch-slider-wrap">
+                        <input type="checkbox" id="itMasterSwitch" class="switch-checkbox" checked>
+                        <span class="switch-slider"></span>
+                    </label>
+                    <span class="toggle-state-text on-text">ON</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8 Sector Real-World Comparisons (WITH IT vs WITHOUT IT) -->
+        <section style="padding-top: 20px;">
+            <div class="section-header reveal">
+                <p class="section-subtitle">Real-World Contrast</p>
+                <h2 class="section-title">With IT vs Without IT</h2>
+                <p class="section-description">
+                    Notice how the green panes represent modern efficiency, while the amber/red panes reveal the friction, delays, and limits of life without Information Technology.
+                </p>
+            </div>
+
+            <div class="sectors-grid">
+                <!-- 1. Banking & Finance -->
+                <div class="sector-card reveal">
+                    <div class="sector-header">
+                        <div class="sector-name">
+                            <span class="sector-icon">🏦</span>
+                            Banking & Payments
+                        </div>
+                        <span class="sector-tag tag-on">Online</span>
+                    </div>
+                    <div class="comparison-body">
+                        <div class="state-pane pane-with-it">
+                            <div class="pane-label">✓ With IT</div>
+                            <div class="pane-title">Instant Digital Economy</div>
+                            <p class="pane-desc">
+                                UPI, contactless payments, 24/7 mobile banking apps, instant global wire transfers, and automated fraud security algorithms.
+                            </p>
+                        </div>
+                        <div class="state-pane pane-without-it">
+                            <div class="pane-label">✕ Without IT</div>
+                            <div class="pane-title">Manual Cash & Long Queues</div>
+                            <p class="pane-desc">
+                                Physical bank tokens, endless branch queues, heavy paper passbooks, manual ledger audits, and zero cross-border speed.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Hospitals & Healthcare -->
+                <div class="sector-card reveal">
+                    <div class="sector-header">
+                        <div class="sector-name">
+                            <span class="sector-icon">🏥</span>
+                            Hospitals & Healthcare
+                        </div>
+                        <span class="sector-tag tag-on">Online</span>
+                    </div>
+                    <div class="comparison-body">
+                        <div class="state-pane pane-with-it">
+                            <div class="pane-label">✓ With IT</div>
+                            <div class="pane-title">Connected Life Support & Records</div>
+                            <p class="pane-desc">
+                                Electronic patient histories accessible anywhere, AI-assisted MRI scanning, robotic surgery precision, and instant telemedicine.
+                            </p>
+                        </div>
+                        <div class="state-pane pane-without-it">
+                            <div class="pane-label">✕ Without IT</div>
+                            <div class="pane-title">Lost Paper Charts & Delays</div>
+                            <p class="pane-desc">
+                                Fragile handwritten medical files, lost histories in emergencies, slow manual lab analysis, and zero remote specialist access.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Transportation & Logistics -->
+                <div class="sector-card reveal">
+                    <div class="sector-header">
+                        <div class="sector-name">
+                            <span class="sector-icon">🚆</span>
+                            Transportation & Travel
+                        </div>
+                        <span class="sector-tag tag-on">Online</span>
+                    </div>
+                    <div class="comparison-body">
+                        <div class="state-pane pane-with-it">
+                            <div class="pane-label">✓ With IT</div>
+                            <div class="pane-title">Smart GPS & Automated Fleets</div>
+                            <p class="pane-desc">
+                                Real-time satellite navigation, instant flight & train booking, automated airport control towers, and rideshare apps.
+                            </p>
+                        </div>
+                        <div class="state-pane pane-without-it">
+                            <div class="pane-label">✕ Without IT</div>
+                            <div class="pane-title">Paper Maps & Traffic Gridlock</div>
+                            <p class="pane-desc">
+                                Navigating blindly with folding paper maps, physical ticket counters, severe airport scheduling chaos, and delayed deliveries.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Education & Learning -->
+                <div class="sector-card reveal">
+                    <div class="sector-header">
+                        <div class="sector-name">
+                            <span class="sector-icon">🎓</span>
+                            Education & Research
+                        </div>
+                        <span class="sector-tag tag-on">Online</span>
+                    </div>
+                    <div class="comparison-body">
+                        <div class="state-pane pane-with-it">
+                            <div class="pane-label">✓ With IT</div>
+                            <div class="pane-title">Universal Global Knowledge</div>
+                            <p class="pane-desc">
+                                Free online courses, interactive coding environments, instant global research papers, and remote interactive classrooms.
+                            </p>
+                        </div>
+                        <div class="state-pane pane-without-it">
+                            <div class="pane-label">✕ Without IT</div>
+                            <div class="pane-title">Isolated Local Classrooms</div>
+                            <p class="pane-desc">
+                                Dependent entirely on scarce printed physical textbooks, blackboard lectures, and geographic confinement to local schools.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Global Communication -->
+                <div class="sector-card reveal">
+                    <div class="sector-header">
+                        <div class="sector-name">
+                            <span class="sector-icon">📱</span>
+                            Personal Communication
+                        </div>
+                        <span class="sector-tag tag-on">Online</span>
+                    </div>
+                    <div class="comparison-body">
+                        <div class="state-pane pane-with-it">
+                            <div class="pane-label">✓ With IT</div>
+                            <div class="pane-title">Instant Global Connection</div>
+                            <p class="pane-desc">
+                                High-definition video calls across continents in milliseconds, group chats, emergency alerts, and ubiquitous messaging.
+                            </p>
+                        </div>
+                        <div class="state-pane pane-without-it">
+                            <div class="pane-label">✕ Without IT</div>
+                            <div class="pane-title">Postal Mail & Landline Waiting</div>
+                            <p class="pane-desc">
+                                Letters taking weeks to reach loved ones abroad, expensive short telegraphs, landline queues, and delayed urgent news.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Modern Businesses -->
+                <div class="sector-card reveal">
+                    <div class="sector-header">
+                        <div class="sector-name">
+                            <span class="sector-icon">🏢</span>
+                            Businesses & Enterprise
+                        </div>
+                        <span class="sector-tag tag-on">Online</span>
+                    </div>
+                    <div class="comparison-body">
+                        <div class="state-pane pane-with-it">
+                            <div class="pane-label">✓ With IT</div>
+                            <div class="pane-title">Global Cloud Collaboration</div>
+                            <p class="pane-desc">
+                                Borderless remote teamwork, automated inventory trackers, real-time analytics, and customer reach across 190+ countries.
+                            </p>
+                        </div>
+                        <div class="state-pane pane-without-it">
+                            <div class="pane-label">✕ Without IT</div>
+                            <div class="pane-title">Cabinets of Dusty Files</div>
+                            <p class="pane-desc">
+                                Thousands of paper folders, typewriter memos, localized sales restricted to foot traffic, and agonizingly slow auditing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Daily Online Services -->
+                <div class="sector-card reveal">
+                    <div class="sector-header">
+                        <div class="sector-name">
+                            <span class="sector-icon">🛍️</span>
+                            Daily Services & Retail
+                        </div>
+                        <span class="sector-tag tag-on">Online</span>
+                    </div>
+                    <div class="comparison-body">
+                        <div class="state-pane pane-with-it">
+                            <div class="pane-label">✓ With IT</div>
+                            <div class="pane-title">On-Demand Doorstep Convenience</div>
+                            <p class="pane-desc">
+                                Food delivery in 15 minutes, grocery ordering, utility bill payment from your bed, and endless entertainment streaming.
+                            </p>
+                        </div>
+                        <div class="state-pane pane-without-it">
+                            <div class="pane-label">✕ Without IT</div>
+                            <div class="pane-title">Full Days Spent on Errands</div>
+                            <p class="pane-desc">
+                                Standing under the sun to pay electricity bills, physical grocery shopping in crowded markets, and manual coupon stamps.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Information Sharing & Media -->
+                <div class="sector-card reveal">
+                    <div class="sector-header">
+                        <div class="sector-name">
+                            <span class="sector-icon">📰</span>
+                            Information & News
+                        </div>
+                        <span class="sector-tag tag-on">Online</span>
+                    </div>
+                    <div class="comparison-body">
+                        <div class="state-pane pane-with-it">
+                            <div class="pane-label">✓ With IT</div>
+                            <div class="pane-title">Instant Global Awareness</div>
+                            <p class="pane-desc">
+                                Breaking news within seconds, weather radar warnings, live community updates, and open internet transparency.
+                            </p>
+                        </div>
+                        <div class="state-pane pane-without-it">
+                            <div class="pane-label">✕ Without IT</div>
+                            <div class="pane-title">Delayed Newspapers & Rumors</div>
+                            <p class="pane-desc">
+                                Waiting for tomorrow morning's printed paper, natural disasters striking without advance warning, and rampant misinformation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Concluding Thought & Next Page CTA -->
+        <section>
+            <div class="quote-banner reveal">
+                <h2>
+                    "IT is invisible when it functions seamlessly, but its true magnitude is felt the exact second it disappears."
+                </h2>
+                <p>
+                    Seeing the world grind to a halt without IT proves its power. But what about my personal career? If IT wasn't a choice for me, how would I survive and thrive?
+                </p>
+                <a href="mylife.html" class="btn btn-primary">
+                    Discover: My Life Without IT →
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Global Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-logo">
+                IT<span class="logo-badge">2030</span>
+                <span>— Future of Information Technology</span>
+            </div>
+
+            <ul class="footer-links">
+                <li><a href="index.html">IT in 2030</a></li>
+                <li><a href="world.html">World Without IT</a></li>
+                <li><a href="mylife.html">My Life Without IT</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026–2030 IT Future Project. Built with HTML5, CSS3 & Modern JavaScript.</p>
+            <p>Designed for student showcase & presentation excellence.</p>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
