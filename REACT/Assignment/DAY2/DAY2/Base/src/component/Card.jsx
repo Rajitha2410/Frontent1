@@ -1,0 +1,12 @@
+const Card = () => {
+  return (
+    <>
+      <div>
+        <h2>React Card</h2>
+        <p>This is a simple card.</p>
+      </div>
+    </>
+  );
+};
+
+export default Card;

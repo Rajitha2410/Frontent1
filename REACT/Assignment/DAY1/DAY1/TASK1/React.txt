@@ -1,0 +1,59 @@
+1.What is React?
+
+React is an open-source JavaScript library used to build interactive and reusable user interfaces, especially for web applications.
+React was created at Facebook and was open-sourced in 2013. 
+Today it is maintained by Meta and the open-source community. 
+React mainly focuses on the UI layer of an application.
+
+In traditional JavaScript applications, developers manually select DOM elements and update them whenever data changes.
+React provides a declarative and component-based approach. 
+We describe what the UI should look like for the current data/state, and React handles the necessary rendering and DOM updates.
+
+2.Library or framework?
+React is a library, not a framework. 
+It focuses on one thing — the "view" layer (what's rendered on screen). 
+It doesn't dictate how you handle routing, state management, 
+or API calls; you bring in other libraries for that (like React Router, Redux, or Zustand). 
+A framework (like Angular) is more opinionated and gives you a full structure out of the box.
+
+3.What is a component?
+
+A component is a reusable piece of UI. 
+In modern React, components are commonly JavaScript functions that return JSX.
+For example, instead of writing navbar code repeatedly, we can create one "Navbar" component and use it wherever required. 
+Components make applications easier to divide into manageable pieces.
+
+
+4.Why are components important?
+
+Reusability — write once, use anywhere
+Separation of concerns — each component manages its own logic and UI
+Composability — small components combine into complex UIs
+Maintainability — easier to test, debug, and update in isolation
+
+5.What is JSX?
+JSX (JavaScript XML) is a syntax extension that lets you write HTML-like code inside JavaScript.
+ It's not valid JS on its own — a tool like Babel compiles it into regular JavaScript function calls (React.createElement(...)).
+
+6.What is Virtual DOM?
+
+Virtual DOM is a common term for React's in-memory representation of the UI. 
+React uses its internal tree structures to determine what the UI should look like based on the latest component output.
+When state changes, React renders the affected component logic again, creates the next representation, determines the necessary changes, and then commits the required updates to the browser DOM.
+
+7.What is the Real DOM?
+
+The Real DOM (Document Object Model) is the actual tree structure the browser uses to represent your webpage.
+Directly manipulating it repeatedly is slow, because every change can trigger layout recalculations and repaints.
+
+
+8.What is reconciliation?
+
+Reconciliation is the process React uses to figure out what changed. When state updates:
+
+React builds a new Virtual DOM tree
+It compares (diffs) this new tree against the previous one
+It calculates the minimal set of changes needed
+It updates only those specific parts of the Real DOM
+
+This diffing process (often called the "diffing algorithm") is what makes React fast — it avoids unnecessary, expensive updates to the actual browser DOM.

@@ -1,0 +1,37 @@
+.profile-card {
+  width: 300px;
+  margin: 40px auto;
+  padding: 25px;
+  text-align: center;
+  border-radius: 15px;
+  background-color: #f3f4f6;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-card h2 {
+  margin: 15px 0 5px;
+}
+
+.profile-card p {
+  color: #555;
+}
+
+.profile-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.profile-button:hover {
+  background-color: #1d4ed8;
+}
