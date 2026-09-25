@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Front-End Assignment Hub - My Web Development Assignments</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .soft-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .soft-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+      border-color: #cbd5e1;
+    }
+    .category-pill.active {
+      background-color: #0f172a !important;
+      color: #ffffff !important;
+      border-color: #0f172a !important;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15) !important;
+    }
+    .category-pill.active span.count-badge {
+      background-color: rgba(255, 255, 255, 0.2) !important;
+      color: #ffffff !important;
+    }
+    /* Modal responsive preview frame */
+    .preview-desktop { width: 100%; height: 100%; }
+    .preview-tablet { width: 768px; height: 100%; margin: 0 auto; box-shadow: 0 0 25px rgba(0,0,0,0.15); border-radius: 12px; }
+    .preview-mobile { width: 375px; height: 100%; margin: 0 auto; box-shadow: 0 0 25px rgba(0,0,0,0.15); border-radius: 24px; }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- ========================================== -->
+  <!-- 1. TOP HEADER & BRANDING                   -->
+  <!-- ========================================== -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        
+        <!-- Logo & Title -->
+        <div class="flex items-center gap-3.5 text-center md:text-left">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-indigo-600 to-indigo-500 text-white flex items-center justify-center shadow-md shadow-indigo-100 text-lg">
+            <i class="fa-solid fa-laptop-code"></i>
+          </div>
+          <div>
+            <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2 justify-center md:justify-start">
+              Front-End Assignment Hub
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+                2026 Portfolio
+              </span>
+            </h1>
+            <p class="text-xs text-slate-500 font-medium">My Web Development Assignments • Interactive Teacher Showcase</p>
+          </div>
+        </div>
+
+        <!-- Quick Actions & GitHub Links -->
+        <div class="flex flex-wrap items-center justify-center gap-2">
+          <!-- Guide Modal Trigger -->
+          <button onclick="openGuideModal()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200 transition flex items-center gap-1.5 shadow-2xs">
+            <i class="fa-solid fa-circle-question text-indigo-500"></i>
+            <span>Add Assignment Guide</span>
+          </button>
+
+          <!-- GitHub Pages Live Website Link -->
+          <a href="https://rajitha2410.github.io/Frontent1/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-lg transition flex items-center gap-1.5 shadow-xs" title="Open Live Hosted Website on GitHub Pages">
+            <i class="fa-solid fa-globe"></i>
+            <span>Live on GitHub Pages</span>
+          </a>
+
+          <!-- GitHub Repository Link -->
+          <a href="https://github.com/Rajitha2410/Frontent1" target="_blank" rel="noopener noreferrer" class="px-3 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg transition flex items-center gap-1.5 shadow-xs" title="Open GitHub Repository (Rajitha2410/Frontent1)">
+            <i class="fa-brands fa-github"></i>
+            <span>GitHub Repo</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-2 py-3 border-t border-slate-100 text-xs">
+        <div class="flex items-center gap-2 p-2 rounded-lg bg-slate-50 border border-slate-200/60">
+          <span class="w-7 h-7 rounded-md bg-orange-100 text-orange-600 flex items-center justify-center font-bold text-xs"><i class="fa-brands fa-html5"></i></span>
+          <div>
+            <div class="font-bold text-slate-900" id="stat-html">86 Pages</div>
+            <div class="text-[10px] text-slate-500">HTML Tasks</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 p-2 rounded-lg bg-slate-50 border border-slate-200/60">
+          <span class="w-7 h-7 rounded-md bg-sky-100 text-sky-600 flex items-center justify-center font-bold text-xs"><i class="fa-brands fa-css3-alt"></i></span>
+          <div>
+            <div class="font-bold text-slate-900" id="stat-css">44 Pages</div>
+            <div class="text-[10px] text-slate-500">CSS Tasks</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 p-2 rounded-lg bg-slate-50 border border-slate-200/60">
+          <span class="w-7 h-7 rounded-md bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-xs"><i class="fa-brands fa-js"></i></span>
+          <div>
+            <div class="font-bold text-slate-900" id="stat-js">60+ Tasks</div>
+            <div class="text-[10px] text-slate-500">JavaScript (1-20)</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 p-2 rounded-lg bg-slate-50 border border-slate-200/60">
+          <span class="w-7 h-7 rounded-md bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-xs"><i class="fa-brands fa-bootstrap"></i></span>
+          <div>
+            <div class="font-bold text-slate-900" id="stat-bs">11 Pages</div>
+            <div class="text-[10px] text-slate-500">Bootstrap & TW</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 p-2 rounded-lg bg-slate-50 border border-slate-200/60">
+          <span class="w-7 h-7 rounded-md bg-cyan-100 text-cyan-600 flex items-center justify-center font-bold text-xs"><i class="fa-brands fa-react"></i></span>
+          <div>
+            <div class="font-bold text-slate-900" id="stat-react">10 Apps</div>
+            <div class="text-[10px] text-slate-500">React Projects</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 p-2 rounded-lg bg-slate-50 border border-slate-200/60">
+          <span class="w-7 h-7 rounded-md bg-rose-100 text-rose-600 flex items-center justify-center font-bold text-xs"><i class="fa-solid fa-newspaper"></i></span>
+          <div>
+            <div class="font-bold text-slate-900" id="stat-article">6 Articles</div>
+            <div class="text-[10px] text-slate-500">Editorial Sites</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Search & Filter Bar -->
+    <div class="bg-slate-50 border-t border-slate-200/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+        
+        <!-- Category Filter Buttons -->
+        <div class="w-full md:w-auto overflow-x-auto flex items-center gap-1.5 text-xs font-semibold pb-1 md:pb-0">
+          <button onclick="filterCategory('all')" id="btn-all" class="category-pill active px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition whitespace-nowrap flex items-center gap-1.5 shadow-2xs">
+            <span>All</span>
+            <span class="count-badge text-[10px] px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600" id="count-all">210</span>
+          </button>
+          <button onclick="filterCategory('html')" id="btn-html" class="category-pill px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition whitespace-nowrap flex items-center gap-1.5 shadow-2xs">
+            <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+            <span>HTML</span>
+            <span class="count-badge text-[10px] px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600" id="count-html">86</span>
+          </button>
+          <button onclick="filterCategory('css')" id="btn-css" class="category-pill px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition whitespace-nowrap flex items-center gap-1.5 shadow-2xs">
+            <span class="w-2 h-2 rounded-full bg-sky-500"></span>
+            <span>CSS</span>
+            <span class="count-badge text-[10px] px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600" id="count-css">44</span>
+          </button>
+          <button onclick="filterCategory('javascript')" id="btn-javascript" class="category-pill px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition whitespace-nowrap flex items-center gap-1.5 shadow-2xs">
+            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+            <span>JavaScript</span>
+            <span class="count-badge text-[10px] px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600" id="count-javascript">63</span>
+          </button>
+          <button onclick="filterCategory('bs')" id="btn-bs" class="category-pill px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition whitespace-nowrap flex items-center gap-1.5 shadow-2xs">
+            <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+            <span>Bootstrap & TW</span>
+            <span class="count-badge text-[10px] px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600" id="count-bs">11</span>
+          </button>
+          <button onclick="filterCategory('react')" id="btn-react" class="category-pill px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition whitespace-nowrap flex items-center gap-1.5 shadow-2xs">
+            <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+            <span>React</span>
+            <span class="count-badge text-[10px] px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600" id="count-react">10</span>
+          </button>
+          <button onclick="filterCategory('article')" id="btn-article" class="category-pill px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition whitespace-nowrap flex items-center gap-1.5 shadow-2xs">
+            <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+            <span>Articles</span>
+            <span class="count-badge text-[10px] px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-600" id="count-article">6</span>
+          </button>
+        </div>
+
+        <!-- Search Input -->
+        <div class="w-full md:w-80 relative">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+          <input type="text" id="searchInput" placeholder="Search by name, day, topic, or file..." 
+                 class="w-full bg-white text-xs text-slate-800 placeholder-slate-400 pl-9 pr-8 py-2 rounded-lg border border-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition shadow-2xs"
+                 onkeyup="handleSearch()">
+          <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ========================================== -->
+  <!-- 2. MAIN ASSIGNMENT GRID CONTAINER          -->
+  <!-- ========================================== -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-10">
+    
+    <!-- Active Status Bar -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-slate-500 pb-2 border-b border-slate-200">
+      <div id="resultsCount" class="font-medium text-slate-700">Showing all assignments</div>
+      <div class="flex items-center gap-3 text-[11px]">
+        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-indigo-500"></span> <strong>[View Assignment]</strong>: In-Page Preview</span>
+        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> <strong>[Live Demo]</strong>: Open Output</span>
+        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-700"></span> <strong>[View on GitHub]</strong>: Source Code</span>
+      </div>
+    </div>
+
+    <!-- Container where cards are dynamically rendered -->
+    <div id="assignmentSections" class="space-y-12">
+      <!-- Generated dynamically by dataset -->
+    </div>
+
+    <!-- Empty Results State -->
+    <div id="emptyState" class="hidden text-center py-16 bg-white rounded-2xl border border-slate-200 p-8 shadow-xs">
+      <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto text-lg mb-3">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <h3 class="text-base font-bold text-slate-800 mb-1">No matching assignments found</h3>
+      <p class="text-xs text-slate-500 max-w-sm mx-auto mb-4">Try searching with a different keyword, day number (e.g. Day 5), or select another category filter.</p>
+      <button onclick="clearSearch()" class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-xs font-semibold hover:bg-indigo-700 transition">
+        Reset Search & Filters
+      </button>
+    </div>
+
+  </main>
+
+
+  <!-- ========================================== -->
+  <!-- 3. LIVE PREVIEW MODAL                      -->
+  <!-- ========================================== -->
+  <div id="previewModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-2 sm:p-4 hidden transition-opacity">
+    <div class="bg-white w-full max-w-6xl h-[92vh] rounded-2xl shadow-2xl flex flex-col border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      
+      <!-- Modal Top Bar -->
+      <div class="px-4 py-3 bg-slate-900 text-white flex flex-wrap items-center justify-between gap-3 border-b border-slate-800">
+        
+        <!-- Left: Project Title & Path -->
+        <div class="flex items-center gap-3 min-w-0 max-w-md">
+          <span id="modalCategoryBadge" class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-indigo-600 text-white">
+            HTML
+          </span>
+          <div class="min-w-0">
+            <h2 id="modalTitle" class="text-sm font-bold text-white truncate">Assignment Preview</h2>
+            <p id="modalPath" class="text-[11px] text-slate-400 font-mono truncate">path/to/file.html</p>
+          </div>
+        </div>
+
+        <!-- Center: Device Viewport Switcher -->
+        <div class="hidden sm:flex items-center bg-slate-800 p-1 rounded-lg border border-slate-700 text-xs">
+          <button onclick="setViewport('desktop')" id="vp-desktop" class="px-2.5 py-1 rounded text-white bg-slate-700 font-medium transition" title="Desktop View (100%)">
+            <i class="fa-solid fa-desktop mr-1"></i> Desktop
+          </button>
+          <button onclick="setViewport('tablet')" id="vp-tablet" class="px-2.5 py-1 rounded text-slate-400 hover:text-white font-medium transition" title="Tablet View (768px)">
+            <i class="fa-solid fa-tablet-screen-button mr-1"></i> Tablet
+          </button>
+          <button onclick="setViewport('mobile')" id="vp-mobile" class="px-2.5 py-1 rounded text-slate-400 hover:text-white font-medium transition" title="Mobile View (375px)">
+            <i class="fa-solid fa-mobile-screen-button mr-1"></i> Mobile
+          </button>
+        </div>
+
+        <!-- Right: Actions & External Links -->
+        <div class="flex items-center gap-2">
+          <!-- Refresh -->
+          <button onclick="refreshPreview()" class="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition" title="Reload preview">
+            <i class="fa-solid fa-rotate-right text-xs"></i>
+          </button>
+
+          <!-- Live Demo Link -->
+          <a id="modalLiveDemo" href="#" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-semibold transition flex items-center gap-1.5" title="Open actual output in new tab">
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            <span>Live Demo</span>
+          </a>
+
+          <!-- View on GitHub Link -->
+          <a id="modalGitHub" href="#" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-lg text-xs font-semibold transition flex items-center gap-1.5 border border-slate-700" title="View file in GitHub repository">
+            <i class="fa-brands fa-github text-xs"></i>
+            <span>View on GitHub</span>
+          </a>
+
+          <!-- Close Modal -->
+          <button onclick="closePreviewModal()" class="p-2 text-slate-400 hover:text-white hover:bg-rose-600 rounded-lg transition" title="Close preview (Esc)">
+            <i class="fa-solid fa-xmark text-sm"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Modal Iframe Container -->
+      <div class="flex-1 bg-slate-100 p-2 sm:p-4 overflow-hidden flex items-center justify-center">
+        <iframe id="previewIframe" src="" class="w-full h-full bg-white border border-slate-200 rounded-lg shadow-sm transition-all duration-200" title="Assignment Output"></iframe>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================== -->
+  <!-- 4. "ADD NEW ASSIGNMENT" GUIDE MODAL        -->
+  <!-- ========================================== -->
+  <div id="guideModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col border border-slate-200 overflow-hidden">
+      
+      <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid fa-circle-plus text-indigo-400"></i>
+          <h3 class="text-base font-bold">How to Add a New Assignment Tomorrow</h3>
+        </div>
+        <button onclick="closeGuideModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="p-6 space-y-4 text-xs text-slate-700 leading-relaxed overflow-y-auto max-h-[75vh]">
+        <p class="text-slate-600">
+          This portal automatically links your local assignments and connects with your GitHub repository (<a href="https://github.com/Rajitha2410/Frontent1" target="_blank" class="text-indigo-600 font-semibold underline">Rajitha2410/Frontent1</a>). Follow these 3 simple steps:
+        </p>
+
+        <!-- Step 1 -->
+        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
+          <div class="font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px]">1</span>
+            Create Your Assignment Folder & File
+          </div>
+          <p class="text-slate-600 pl-7">
+            Save your new assignment inside its folder, for example:
+            <br><code class="font-mono bg-white px-2 py-0.5 rounded border border-slate-200 text-indigo-600">JAVA SCRIPT/Assignment/Day21/index.html</code>
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
+          <div class="font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px]">2</span>
+            Add the Entry in `index.html` (Dataset)
+          </div>
+          <p class="text-slate-600 pl-7">
+            Open <code class="font-mono bg-white px-1.5 py-0.5 rounded border border-slate-200">index.html</code> and find the <code class="font-mono bg-white px-1.5 py-0.5 rounded border border-slate-200">ASSIGNMENTS_DATA</code> array. Add one item:
+          </p>
+          <div class="pl-7">
+            <pre class="bg-slate-900 text-slate-100 p-2.5 rounded-lg font-mono text-[11px] overflow-x-auto"><code>{
+  category: "javascript",
+  day: "Day 21",
+  title: "Task 1 - Async Await Practice",
+  path: "JAVA%20SCRIPT/Assignment/Day21/index.html",
+  desc: "Async function, promises and API fetching."
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
+          <div class="font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px]">3</span>
+            Push to GitHub
+          </div>
+          <p class="text-slate-600 pl-7">
+            Commit and push your files. The website automatically links the in-page preview, the Live Demo link, and the GitHub source link!
+          </p>
+          <div class="pl-7">
+            <pre class="bg-slate-900 text-slate-100 p-2 rounded-lg font-mono text-[11px]"><code>git add .
+git commit -m "Add Day 21 assignment"
+git push origin main</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-6 py-3 bg-slate-50 border-t border-slate-200 flex justify-end">
+        <button onclick="closeGuideModal()" class="px-4 py-2 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800 transition">
+          Got It!
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================== -->
+  <!-- 5. TOAST NOTIFICATION                      -->
+  <!-- ========================================== -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-xl border border-slate-700 text-xs font-medium flex items-center gap-2 translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <i class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toastMsg">Path copied to clipboard!</span>
+  </div>
+
+
+  <!-- ========================================== -->
+  <!-- 6. FOOTER                                  -->
+  <!-- ========================================== -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p>© 2026 Front-End Assignment Hub • Built for Teacher Review & Portfolio Submission</p>
+      <div class="flex items-center gap-4 text-slate-600">
+        <a href="https://github.com/Rajitha2410/Frontent1" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-600 transition flex items-center gap-1">
+          <i class="fa-brands fa-github"></i>
+          <span>GitHub: Rajitha2410/Frontent1</span>
+        </a>
+        <span>•</span>
+        <a href="https://rajitha2410.github.io/Frontent1/" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 transition flex items-center gap-1">
+          <i class="fa-solid fa-globe"></i>
+          <span>GitHub Pages</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ========================================== -->
+  <!-- 7. ASSIGNMENTS DATASET & HUB CONTROLLER    -->
+  <!-- ========================================== -->
+  <script>
+    // GITHUB REPOSITORY & GITHUB PAGES CONFIGURATION
+    const GITHUB_REPO_URL = "https://github.com/Rajitha2410/Frontent1";
+    const GITHUB_PAGES_URL = "https://rajitha2410.github.io/Frontent1/";
+
+    // Helper to generate exact GitHub source code link
+    function getGitHubSourceUrl(relativePath) {
+      const cleanParts = relativePath.split('/').map(segment => encodeURIComponent(decodeURIComponent(segment)));
+      return `${GITHUB_REPO_URL}/blob/main/${cleanParts.join('/')}`;
+    }
+
+    // Helper to generate live demo URL (compatible both locally and on GitHub Pages)
+    function getLiveDemoUrl(relativePath) {
+      return relativePath;
+    }
+
+    // COMPLETE DATASET OF ALL ASSIGNMENTS AND FILES IN FRONTEND FOLDER
+    const ASSIGNMENTS_DATA = [
+      
+      // ==========================================
+      // HTML ASSIGNMENTS (Days 1 - 10 + Projects)
+      // ==========================================
+      { category: "html", day: "Day 1", title: "Day 1 - Portfolio Index", path: "HTML/Day1/index.html", desc: "Personal multi-page profile directory." },
+      { category: "html", day: "Day 1", title: "Day 1 - Profile Page", path: "HTML/Day1/Profile.html", desc: "Personal introduction and biography." },
+      { category: "html", day: "Day 1", title: "Day 1 - Family Details", path: "HTML/Day1/Family.html", desc: "Family members background details." },
+      { category: "html", day: "Day 1", title: "Day 1 - Favorites Page", path: "HTML/Day1/Favorite.html", desc: "Hobbies, interests, and favorite activities." },
+      { category: "html", day: "Day 1", title: "Day 1 - College Education", path: "HTML/Day1/college.html", desc: "Educational history and college profile." },
+      { category: "html", day: "Day 1", title: "Day 1 - Target Company", path: "HTML/Day1/Company.html", desc: "Company goals and professional aspirations." },
+
+      { category: "html", day: "Day 2", title: "Day 2 - HTML Elements Index", path: "HTML/Day2/index.html", desc: "HTML structural elements overview." },
+      { category: "html", day: "Day 2", title: "Day 2 - Introduction to Tags", path: "HTML/Day2/Intro.html", desc: "Basic HTML heading and paragraph tags." },
+      { category: "html", day: "Day 2", title: "Day 2 - Block Level Elements", path: "HTML/Day2/Task2/Block%20level.html", desc: "div, section, article, p block layout." },
+      { category: "html", day: "Day 2", title: "Day 2 - Inline Elements", path: "HTML/Day2/Task2/Inline.html", desc: "span, a, strong, em inline elements." },
+      { category: "html", day: "Day 2", title: "Day 2 - Text Formatting", path: "HTML/Day2/Task2/Formatting.html", desc: "b, i, sub, sup, mark text formats." },
+      { category: "html", day: "Day 2", title: "Day 2 - Interactive Elements", path: "HTML/Day2/Task2/Interactive.html", desc: "Details, summary, buttons and dialog." },
+      { category: "html", day: "Day 2", title: "Day 2 - Single Page Layout", path: "HTML/Day2/Task2/Single%20page.html", desc: "Single page HTML document structure." },
+
+      { category: "html", day: "Day 3", title: "Day 3 - Lists & Layouts Index", path: "HTML/Day3/intex.html", desc: "Ordered, unordered and nested lists hub." },
+      { category: "html", day: "Day 3", title: "Day 3 - Task 1: Ordered Lists", path: "HTML/Day3/Task3/task1.html", desc: "Numbered and Roman numeral lists." },
+      { category: "html", day: "Day 3", title: "Day 3 - Task 2: Unordered Lists", path: "HTML/Day3/Task3/task2.html", desc: "Bullet and custom marker lists." },
+      { category: "html", day: "Day 3", title: "Day 3 - Task 3: Nested Lists", path: "HTML/Day3/Task3/Task3.html", desc: "Multi-tier nested navigation lists." },
+      { category: "html", day: "Day 3", title: "Day 3 - Task 4: Definition Lists", path: "HTML/Day3/Task3/Task4.html", desc: "dl, dt, dd glossary description lists." },
+      { category: "html", day: "Day 3", title: "Day 3 - Task 5: Course Syllabus", path: "HTML/Day3/Task3/Task5.html", desc: "Structured hierarchical course modules." },
+
+      { category: "html", day: "Day 4", title: "Day 4 - Hyperlinks Hub", path: "HTML/Day4/href.html", desc: "Anchor destinations and linking systems." },
+      { category: "html", day: "Day 4", title: "Day 4 - Block Level Practice", path: "HTML/Day4/Block%20Level.html", desc: "Block elements display practice." },
+      { category: "html", day: "Day 4", title: "Day 4 - Inline Practice", path: "HTML/Day4/Inline.html", desc: "Inline elements linking flow." },
+      { category: "html", day: "Day 4", title: "Day 4 - Task 1: Basic Links", path: "HTML/Day4/Day4/Task1.html", desc: "Internal anchor navigation links." },
+      { category: "html", day: "Day 4", title: "Day 4 - Task 2: External Links", path: "HTML/Day4/Day4/Task2.html", desc: "External website target anchors." },
+      { category: "html", day: "Day 4", title: "Day 4 - Task 3: Bookmark Anchors", path: "HTML/Day4/Day4/Task3.html", desc: "Section jumping ID bookmarks." },
+      { category: "html", day: "Day 4", title: "Day 4 - Task 4: Image Links", path: "HTML/Day4/Day4/Task4.html", desc: "Clickable thumbnail image links." },
+      { category: "html", day: "Day 4", title: "Day 4 - Task 5: Email & Call Links", path: "HTML/Day4/Day4/Task5.html", desc: "mailto: and tel: protocol links." },
+      { category: "html", day: "Day 4", title: "Day 4 - Task 6: Download Links", path: "HTML/Day4/Day4/Task6.html", desc: "File download attribute anchors." },
+      { category: "html", day: "Day 4", title: "Day 4 - My Home Page", path: "HTML/Day4/href.html/My%20home.html", desc: "Personal home page anchor link." },
+      { category: "html", day: "Day 4", title: "Day 4 - Brother Home Page", path: "HTML/Day4/href.html/Brothr%20home%20.html", desc: "Interlinked multi-home website." },
+
+      { category: "html", day: "Day 5", title: "Day 5 - Indian Constitution Portal", path: "HTML/Day5/indian/index.html", desc: "Full Constitution of India education portal." },
+      { category: "html", day: "Day 5", title: "Day 5 - Constitution Preamble", path: "HTML/Day5/indian/preamble.html", desc: "Preamble philosophy and sovereignty." },
+      { category: "html", day: "Day 5", title: "Day 5 - Constitutional History", path: "HTML/Day5/indian/history.html", desc: "Dr. B.R. Ambedkar drafting assembly." },
+      { category: "html", day: "Day 5", title: "Day 5 - Salient Features", path: "HTML/Day5/indian/features.html", desc: "Parliamentary democracy and federalism." },
+      { category: "html", day: "Day 5", title: "Day 5 - Fundamental Rights", path: "HTML/Day5/indian/rights.html", desc: "Articles 14 to 32 civic freedoms." },
+      { category: "html", day: "Day 5", title: "Day 5 - Fundamental Duties", path: "HTML/Day5/indian/duties.html", desc: "Article 51A citizen responsibilities." },
+      { category: "html", day: "Day 5", title: "Day 5 - Constitution Contact", path: "HTML/Day5/indian/contact.html", desc: "Constitutional committee contact form." },
+      { category: "html", day: "Day 5", title: "Day 5 - IT Companies Hub", path: "HTML/Day5/assets/index.html", desc: "Leading tech companies network." },
+      { category: "html", day: "Day 5", title: "Day 5 - Bangalore Tech Hub", path: "HTML/Day5/assets/Bangalore.html", desc: "Electronic City & Whitefield tech parks." },
+      { category: "html", day: "Day 5", title: "Day 5 - Hyderabad Tech Hub", path: "HTML/Day5/assets/Hyderabad.html", desc: "HITEC City IT development center." },
+
+      { category: "html", day: "Day 6", title: "Day 6 - HTML Forms Hub", path: "HTML/Day6/Form/index.html", desc: "Comprehensive form controls portal." },
+      { category: "html", day: "Day 6", title: "Day 6 - User Registration Form", path: "HTML/Day6/Form/registration.html", desc: "Complete multi-field registration." },
+      { category: "html", day: "Day 6", title: "Day 6 - Member Login Form", path: "HTML/Day6/Form/login.html", desc: "Authentication credentials interface." },
+      { category: "html", day: "Day 6", title: "Day 6 - Job Application Form", path: "HTML/Day6/Form/job.html", desc: "Resume upload and candidate form." },
+      { category: "html", day: "Day 6", title: "Day 6 - Feedback Survey Form", path: "HTML/Day6/Form/feedback.html", desc: "Rating scale and review text fields." },
+      { category: "html", day: "Day 6", title: "Day 6 - Contact Support Form", path: "HTML/Day6/Form/contact.html", desc: "Inquiry submission and subject field." },
+
+      { category: "html", day: "Day 7", title: "Day 7 - College Reg (Form)", path: "HTML/Day7/College_Registeration/Form_method.html", desc: "Student enrollment form layout." },
+      { category: "html", day: "Day 7", title: "Day 7 - College Reg (Table)", path: "HTML/Day7/College_Registeration/Table_method.html", desc: "Table-aligned registration inputs." },
+      { category: "html", day: "Day 7", title: "Day 7 - Employee Reg (Form)", path: "HTML/Day7/Employe_Registeration/Form_method.html", desc: "Staff onboarding form format." },
+      { category: "html", day: "Day 7", title: "Day 7 - Employee Reg (Table)", path: "HTML/Day7/Employe_Registeration/table_method.html", desc: "Grid-structured employee layout." },
+      { category: "html", day: "Day 7", title: "Day 7 - Hospital Reg (Form)", path: "HTML/Day7/Hospital_Registeration/Form_method.html", desc: "Patient medical entry form." },
+      { category: "html", day: "Day 7", title: "Day 7 - Hospital Reg (Table)", path: "HTML/Day7/Hospital_Registeration/Table_method.html", desc: "Tabular patient record input." },
+      { category: "html", day: "Day 7", title: "Day 7 - Product Reg (Form)", path: "HTML/Day7/Product_Registeration/Form_method.html", desc: "Inventory warranty registration." },
+      { category: "html", day: "Day 7", title: "Day 7 - Product Reg (Table)", path: "HTML/Day7/Product_Registeration/Table_method.html", desc: "Tabular product catalog format." },
+      { category: "html", day: "Day 7", title: "Day 7 - SLA Institute (Form)", path: "HTML/Day7/SLA_Registration/Form_method.html", desc: "Course enrollment form structure." },
+      { category: "html", day: "Day 7", title: "Day 7 - SLA Institute (Table)", path: "HTML/Day7/SLA_Registration/table_method.html", desc: "Tabular course registration table." },
+
+      { category: "html", day: "Day 8", title: "Day 8 - Multimedia Form", path: "HTML/Day8/form.html", desc: "Rich media and input validation form." },
+      { category: "html", day: "Day 8", title: "Day 8 - Task 1: Audio Player", path: "HTML/Day8/Day8/task1.html", desc: "HTML5 audio tag with controls." },
+      { category: "html", day: "Day 8", title: "Day 8 - Task 2: Video Player", path: "HTML/Day8/Day8/task2.html", desc: "HTML5 video streaming element." },
+      { category: "html", day: "Day 8", title: "Day 8 - Task 3: Embed & Object", path: "HTML/Day8/Day8/task3.html", desc: "PDF and SVG document embedding." },
+      { category: "html", day: "Day 8", title: "Day 8 - Task 4: Iframe Setup", path: "HTML/Day8/Day8/task4.html", desc: "Nested browser viewport frame." },
+      { category: "html", day: "Day 8", title: "Day 8 - Task 5: YouTube Embed", path: "HTML/Day8/Day8/task5.html", desc: "Responsive video iframe player." },
+
+      { category: "html", day: "Day 9", title: "Day 9 - Complex Form", path: "HTML/Day9/form.html", desc: "Fieldset, legend, and custom inputs." },
+      { category: "html", day: "Day 9", title: "Day 9 - Timetable Matrix", path: "HTML/Day9/table.html", desc: "Colspan, rowspan class schedule." },
+      { category: "html", day: "Day 9", title: "Day 9 - Task 1: Invoice Table", path: "HTML/Day9/Day9/Day9/Task1.html", desc: "Financial ledger with merged headers." },
+      { category: "html", day: "Day 9", title: "Day 9 - Task 2: Match Scoreboard", path: "HTML/Day9/Day9/Day9/Task2.html", desc: "Sports leaderboard data table." },
+      { category: "html", day: "Day 9", title: "Day 9 - Task 3: Pricing Comparison", path: "HTML/Day9/Day9/Day9/Task3.html", desc: "Tiered feature comparison matrix." },
+      { category: "html", day: "Day 9", title: "Day 9 - Task 4: Periodic Table Cell", path: "HTML/Day9/Day9/Day9/Task4.html", desc: "Complex rowspan grid layout." },
+      { category: "html", day: "Day 9", title: "Day 9 - Task 5: Student Report", path: "HTML/Day9/Day9/Day9/Task5.html", desc: "Academic grades marksheet table." },
+
+      { category: "html", day: "Day 10", title: "Day 10 - Advanced Form System", path: "HTML/Day10/Form.html", desc: "HTML5 regex patterns, datalist & range." },
+      { category: "html", day: "Project", title: "Leo Movie Promotional Portal", path: "HTML/sir%20zip/pages/index.html", desc: "Full cinema showcase and synopsis site." },
+      { category: "html", day: "Project", title: "Leo Movie Casting Details", path: "HTML/sir%20zip/pages/pages/casting.html", desc: "Cast members and film crew profile." },
+
+
+      // ==========================================
+      // CSS ASSIGNMENTS (Days 1 - 10 + Projects)
+      // ==========================================
+      { category: "css", day: "Day 1", title: "Day 1 - CSS Basics Index", path: "CSS/Day1/index.html", desc: "CSS syntax, colors, and selectors." },
+      { category: "css", day: "Day 1", title: "Day 1 - Internal Stylesheet", path: "CSS/Day1/Intrnal.html", desc: "Inline vs internal CSS styling." },
+      { category: "css", day: "Day 1", title: "Day 1 - Task 1: Color Palette", path: "CSS/Day1/Day1/Task1.html", desc: "HEX, RGB, HSL color experiments." },
+      { category: "css", day: "Day 1", title: "Day 1 - Task 2: Typography", path: "CSS/Day1/Day1/Task2.html", desc: "Font family, weight, and line-height." },
+      { category: "css", day: "Day 1", title: "Day 1 - Task 3: Text Alignment", path: "CSS/Day1/Day1/Task3.html", desc: "Justify, letter-spacing, transform." },
+      { category: "css", day: "Day 1", title: "Day 1 - Task 4: Background Colors", path: "CSS/Day1/Day1/Task4.html", desc: "Gradients and background clipping." },
+      { category: "css", day: "Day 1", title: "Day 1 - Task 5: Border Styles", path: "CSS/Day1/Day1/Task5.html", desc: "Border-radius, outline and styles." },
+
+      { category: "css", day: "Day 2", title: "Day 2 - Selectors & Fonts Index", path: "CSS/Day2/index.html", desc: "Combinators, pseudo-classes, font rules." },
+      { category: "css", day: "Day 2", title: "Day 2 - Task 1: Element Selectors", path: "CSS/Day2/Day2/Task1/index.html", desc: "Tag and class specificity." },
+      { category: "css", day: "Day 2", title: "Day 2 - Task 2: ID & Universal", path: "CSS/Day2/Day2/Task2/index.html", desc: "Universal reset and ID rules." },
+      { category: "css", day: "Day 2", title: "Day 2 - Task 3: Grouped Selectors", path: "CSS/Day2/Day2/Task3/index.html", desc: "Comma-separated CSS group rules." },
+      { category: "css", day: "Day 2", title: "Day 2 - Task 4: Child & Descendant", path: "CSS/Day2/Day2/Task4/index.html", desc: "Combinator > and space operators." },
+      { category: "css", day: "Day 2", title: "Day 2 - Task 5: Hover Effects", path: "CSS/Day2/Day2/Task5/index.html", desc: ":hover, :focus, :active states." },
+      { category: "css", day: "Day 2", title: "Day 2 - Task 6: Google Web Fonts", path: "CSS/Day2/Day2/Task6/index.html", desc: "Custom web typography importing." },
+
+      { category: "css", day: "Day 3", title: "Day 3 - Card Layout 1", path: "CSS/Day3/Task1/index.html", desc: "Basic card padding and margin." },
+      { category: "css", day: "Day 3", title: "Day 3 - Card Layout 2", path: "CSS/Day3/Task2/index.html", desc: "Card with avatar and shadow." },
+      { category: "css", day: "Day 3", title: "Day 3 - Card Layout 3", path: "CSS/Day3/Task3/index.html", desc: "Product badge card structure." },
+      { category: "css", day: "Day 3", title: "Day 3 - Card Layout 4", path: "CSS/Day3/Task4/index.html", desc: "Horizontal media card layout." },
+      { category: "css", day: "Day 3", title: "Day 3 - Card Layout 5", path: "CSS/Day3/Task5/index.html", desc: "Pricing tier feature card." },
+      { category: "css", day: "Day 3", title: "Day 3 - Card Layout 6", path: "CSS/Day3/Task6/index.html", desc: "Team member social profile card." },
+
+      { category: "css", day: "Day 4", title: "Day 4 - Flexbox Directions", path: "CSS/Day4/Day4/Task1/index.html", desc: "Flex row, column, wrap properties." },
+      { category: "css", day: "Day 4", title: "Day 4 - Trial Card Layout", path: "CSS/Day4/trial/index.html", desc: "Experimental responsive card UI." },
+
+      { category: "css", day: "Day 5", title: "Day 5 - Flexbox Gallery", path: "CSS/Day5/index.html", desc: "Justify-content & align-items gallery." },
+      { category: "css", day: "Day 5", title: "Day 5 - Test Suite Task 1", path: "CSS/Day5/test/Task1/index.html", desc: "Flex centered hero container." },
+      { category: "css", day: "Day 5", title: "Day 5 - Test Suite Task 2", path: "CSS/Day5/test/Task2/index.html", desc: "Flex space-between navbar." },
+      { category: "css", day: "Day 5", title: "Day 5 - Test Suite Task 3", path: "CSS/Day5/test/Task3/index.html", desc: "Multi-column responsive cards." },
+      { category: "css", day: "Day 5", title: "Day 5 - Test Suite Task 4", path: "CSS/Day5/test/Task4/index.html", desc: "Flex layout with order & grow." },
+
+      { category: "css", day: "Day 6", title: "Day 6 - Navigation Bar", path: "CSS/Day6/Task1/index.html", desc: "Sticky header with flex links." },
+      { category: "css", day: "Day 6", title: "Day 6 - Task 2: Service Cards", path: "CSS/Day6/Task2/index.html", desc: "3-column service showcase." },
+      { category: "css", day: "Day 6", title: "Day 6 - Task 3: Feature Boxes", path: "CSS/Day6/Task3/index.html", desc: "Icon feature matrix layout." },
+      { category: "css", day: "Day 6", title: "Day 6 - Task 4: Responsive Sidebar", path: "CSS/Day6/Task4/index.html", desc: "Sidebar and main content split." },
+      { category: "css", day: "Day 6", title: "Day 6 - Task 5: Footer Layout", path: "CSS/Day6/Task5/index.html", desc: "Multi-column footer with links." },
+
+      { category: "css", day: "Day 7", title: "Day 7 - Product Card 1", path: "CSS/Day7/Task1/index.html", desc: "E-commerce product card with rating." },
+      { category: "css", day: "Day 7", title: "Day 7 - Product Card 2", path: "CSS/Day7/Task2/index.html", desc: "Gadget card with price pill." },
+      { category: "css", day: "Day 7", title: "Day 7 - Product Card 3", path: "CSS/Day7/Task3/index.html", desc: "Discount tag overlay card." },
+      { category: "css", day: "Day 7", title: "Day 7 - Product Card 4", path: "CSS/Day7/Task4/index.html", desc: "Product inventory status card." },
+
+      { category: "css", day: "Day 8", title: "Day 8 - Complete Web Project", path: "CSS/Day8/web/index.html", desc: "Full multi-section company website." },
+      { category: "css", day: "Day 8", title: "Day 8 - Task 1: Hero Banner", path: "CSS/Day8/Task1/index.html", desc: "Call to action header banner." },
+      { category: "css", day: "Day 8", title: "Day 8 - Task 2: Testimonials", path: "CSS/Day8/Task2/index.html", desc: "Customer review quote cards." },
+      { category: "css", day: "Day 8", title: "Day 8 - Task 3: Pricing Cards", path: "CSS/Day8/Task3/index.html", desc: "Highlighted popular pricing table." },
+      { category: "css", day: "Day 8", title: "Day 8 - Task 4: FAQ Accordion", path: "CSS/Day8/Task4/index.html", desc: "Collapsible questions format." },
+      { category: "css", day: "Day 8", title: "Day 8 - Task 5: Contact Layout", path: "CSS/Day8/Task5/index.html", desc: "Form & location map split layout." },
+
+      { category: "css", day: "Day 9", title: "Day 9 - CSS Grid Tasks (1-5)", path: "CSS/Day9/Task1/index.html", desc: "2D CSS Grid grid-template-columns." },
+      { category: "css", day: "Day 9", title: "Day 9 - Grid Task 2", path: "CSS/Day9/Task2/index.html", desc: "grid-template-areas dashboard." },
+      { category: "css", day: "Day 9", title: "Day 9 - Grid Task 3", path: "CSS/Day9/Task3/index.html", desc: "Auto-fit & minmax responsive grid." },
+      { category: "css", day: "Day 9", title: "Day 9 - Grid Task 4", path: "CSS/Day9/Task4/index.html", desc: "Nested grid layout inside cards." },
+      { category: "css", day: "Day 9", title: "Day 9 - Grid Task 5", path: "CSS/Day9/Task5/index.html", desc: "Photo gallery with grid spans." },
+
+      { category: "css", day: "Day 10", title: "Day 10 - Transforms & Cards", path: "CSS/Day10/Day10/Task1/index.html", desc: "CSS transform: scale, rotate, hover." },
+      { category: "css", day: "Day 10", title: "Day 10 - Task 2", path: "CSS/Day10/Day10/Task2/index.html", desc: "3D card tilt & shadow depth." },
+      { category: "css", day: "Day 10", title: "Day 10 - Task 3", path: "CSS/Day10/Day10/Task3/index.html", desc: "Flip card front & back layout." },
+      { category: "css", day: "Day 10", title: "Day 10 - Task 4", path: "CSS/Day10/Day10/Task4/index.html", desc: "Transition cubic-bezier curves." },
+      { category: "css", day: "Day 10", title: "Day 10 - Task 5", path: "CSS/Day10/Day10/Task5/index.html", desc: "Keyframe pulse and bounce animations." },
+      { category: "css", day: "Day 10", title: "Day 10 - Task 6", path: "CSS/Day10/Day10/Task6/index.html", desc: "Animated gradient background border." },
+      { category: "css", day: "Day 10", title: "Day 10 - SLA Cards Practice", path: "CSS/Day10/practice/index.html", desc: "SLA Institute featured course cards." },
+      { category: "css", day: "Project", title: "Web Development Guide", path: "CSS/Aetical/Assets/index.html", desc: "Technical article on HTML, CSS & JS." },
+
+
+      // ==========================================
+      // BOOTSTRAP & TAILWIND (BS Days 1 - 4)
+      // ==========================================
+      { category: "bs", day: "Day 1", title: "Bootstrap Setup & Basics", path: "BS/Day1/Task1/index.html", desc: "CDN linking, buttons and typography." },
+      { category: "bs", day: "Day 2", title: "Bootstrap 12-Column Grid", path: "BS/Day2/index.html", desc: "Container, row, and responsive col classes." },
+      { category: "bs", day: "Day 2", title: "2-Column Split Layout", path: "BS/Day2/Task2.html", desc: "col-md-6 responsive two-column grid." },
+      { category: "bs", day: "Day 2", title: "4-Column Feature Cards", path: "BS/Day2/Task3.html", desc: "col-md-3 responsive four-column cards." },
+      { category: "bs", day: "Day 3", title: "Dream Travel Website Project", path: "BS/Day3/index.html", desc: "Navbar, carousel, cards and contact modal." },
+      { category: "bs", day: "Day 4", title: "Tailwind CSS Introduction", path: "BS/Day4/index.html", desc: "Utility-first framework workflow." },
+      { category: "bs", day: "Day 4", title: "Tailwind Task 1: Box Components", path: "BS/Day4/Day4/Task1.html", desc: "Padded containers with custom colors." },
+      { category: "bs", day: "Day 4", title: "Tailwind Task 2: Typography", path: "BS/Day4/Day4/Task2.html", desc: "Font sizes, tracking, and leading." },
+      { category: "bs", day: "Day 4", title: "Tailwind Task 3: Interactive Buttons", path: "BS/Day4/Day4/Task3.html", desc: "Hover, active, and focus transitions." },
+      { category: "bs", day: "Day 4", title: "Tailwind Task 4: Flex Gap Cards", path: "BS/Day4/Day4/Task4.html", desc: "Flexbox layouts with gap utilities." },
+      { category: "bs", day: "Day 4", title: "Tailwind Task 5: Responsive Badges", path: "BS/Day4/Day4/Task5.html", desc: "Modern pill tags and card headers." },
+
+
+      // ==========================================
+      // JAVASCRIPT ASSIGNMENTS (Days 1 - 20)
+      // ==========================================
+      { category: "javascript", day: "Day 1", title: "Variables & Interview Q&A", path: "JAVA%20SCRIPT/Assignment/Day1/index.html", desc: "var, let, const declarations & 10 JS Q&A." },
+      { category: "javascript", day: "Day 2", title: "Day 2 - JavaScript Hub", path: "JAVA%20SCRIPT/Assignment/Day2/index.html", desc: "Data types, variable scope & tasks." },
+      { category: "javascript", day: "Day 2", title: "Day 2 - Live Practice Runner", path: "JAVA%20SCRIPT/Assignment/Day2/assignment/index.html", desc: "Interactive console logger for 6 scripts." },
+      { category: "javascript", day: "Day 2", title: "Day 2 - Task 1: String Types", path: "JAVA%20SCRIPT/Assignment/Day2/Task1/index1.html", desc: "typeof string manipulation exercises." },
+      { category: "javascript", day: "Day 2", title: "Day 2 - Task 2: Numeric Types", path: "JAVA%20SCRIPT/Assignment/Day2/Task2/index2.html", desc: "Integer, float, and NaN operations." },
+      { category: "javascript", day: "Day 2", title: "Day 2 - Task 3: Booleans & Scope", path: "JAVA%20SCRIPT/Assignment/Day2/Task3/index3.html", desc: "Block vs function scope behaviors." },
+      { category: "javascript", day: "Day 2", title: "Day 2 - Task 4: Reassignment", path: "JAVA%20SCRIPT/Assignment/Day2/Task4/index.html", desc: "let mutation vs const immutability." },
+
+      { category: "javascript", day: "Day 3", title: "Day 3 - Operators Hub", path: "JAVA%20SCRIPT/Assignment/Day3/index.html", desc: "Arithmetic, relational & logic overview." },
+      { category: "javascript", day: "Day 3", title: "Day 3 - Task 1: Basic Math", path: "JAVA%20SCRIPT/Assignment/Day3/task1/index.html", desc: "Addition, subtraction, multiplication." },
+      { category: "javascript", day: "Day 3", title: "Day 3 - Task 2: Assignment (+-, *=)", path: "JAVA%20SCRIPT/Assignment/Day3/Task2/index.html", desc: "Compound assignment operators." },
+      { category: "javascript", day: "Day 3", title: "Day 3 - Task 3: Comparisons", path: "JAVA%20SCRIPT/Assignment/Day3/Task3/index.html", desc: "Strict (===) vs loose (==) equality." },
+      { category: "javascript", day: "Day 3", title: "Day 3 - Task 4: Logical (&&, ||)", path: "JAVA%20SCRIPT/Assignment/Day3/Task4/index.html", desc: "AND, OR, NOT conditional combinations." },
+      { category: "javascript", day: "Day 3", title: "Day 3 - Task 5: Increment / Decrement", path: "JAVA%20SCRIPT/Assignment/Day3/Task5/index.html", desc: "Unary ++ and -- operations." },
+
+      { category: "javascript", day: "Day 4", title: "Day 4 - Conditionals Hub", path: "JAVA%20SCRIPT/Assignment/Day4/index.html", desc: "Decision branching and switch statements." },
+      { category: "javascript", day: "Day 4", title: "Day 4 - Task 1: Age Check", path: "JAVA%20SCRIPT/Assignment/Day4/Task1/index.html", desc: "if-else age eligibility condition." },
+      { category: "javascript", day: "Day 4", title: "Day 4 - Task 2: Even / Odd Check", path: "JAVA%20SCRIPT/Assignment/Day4/Task2/index.html", desc: "Modulo (% 2) number classifier." },
+      { category: "javascript", day: "Day 4", title: "Day 4 - Task 3: Grade Ladder", path: "JAVA%20SCRIPT/Assignment/Day4/Task3/index.html", desc: "else-if student score grading system." },
+      { category: "javascript", day: "Day 4", title: "Day 4 - Task 4: Login Auth", path: "JAVA%20SCRIPT/Assignment/Day4/Task4/index.html", desc: "Username and password credential test." },
+      { category: "javascript", day: "Day 4", title: "Day 4 - Task 5: Day of Week Switch", path: "JAVA%20SCRIPT/Assignment/Day4/Task5/index.html", desc: "switch-case weekday matcher." },
+
+      { category: "javascript", day: "Day 5", title: "Day 5 - For Loops Hub", path: "JAVA%20SCRIPT/Assignment/Day5/index.html", desc: "Iteration loops and series generation." },
+      { category: "javascript", day: "Day 5", title: "Day 5 - For Loop Tasks (1-5)", path: "JAVA%20SCRIPT/Assignment/Day5/Task1/index.html", desc: "1-10, 10-1, 1-20, even and odd series." },
+      { category: "javascript", day: "Day 5", title: "Day 5 - Advanced Loops (Task 2)", path: "JAVA%20SCRIPT/Assignment/Day5/Task2/index.html", desc: "Sum calculation & multiplication tables." },
+
+      { category: "javascript", day: "Day 6", title: "Day 6 - For Loop Tasks (6-10)", path: "JAVA%20SCRIPT/Assignment/Day6/index.html", desc: "Reverse number, reverse string, search." },
+      { category: "javascript", day: "Day 6", title: "Day 6 - Single Line Outputs", path: "JAVA%20SCRIPT/Assignment/Day6/Task1/index.html", desc: "String concatenation loops & even counts." },
+
+      { category: "javascript", day: "Day 7", title: "Day 7 - Task 1: Fruits Array", path: "JAVA%20SCRIPT/Assignment/Day7/Task1/index.html", desc: "Array declaration and for loop iteration." },
+      { category: "javascript", day: "Day 7", title: "Day 7 - Task 2: Student Object", path: "JAVA%20SCRIPT/Assignment/Day7/Task2/index.html", desc: "Object key-value properties accessing." },
+      { category: "javascript", day: "Day 7", title: "Day 7 - Task 3: Array of Objects", path: "JAVA%20SCRIPT/Assignment/Day7/Task3/index.html", desc: "Looping through list of student records." },
+
+      { category: "javascript", day: "Day 8", title: "Day 8 - Task 1: Numbers DOM List", path: "JAVA%20SCRIPT/Assignment/Day8/Task1/index.html", desc: "innerHTML rendering from array." },
+      { category: "javascript", day: "Day 8", title: "Day 8 - Task 2: Student Names", path: "JAVA%20SCRIPT/Assignment/Day8/Task2/index.html", desc: "Dynamic list output on web page." },
+      { category: "javascript", day: "Day 8", title: "Day 8 - Task 3: Fruits Catalog", path: "JAVA%20SCRIPT/Assignment/Day8/Task3/index.html", desc: "DOM array element insertion." },
+      { category: "javascript", day: "Day 8", title: "Day 8 - Task 4: Product Prices", path: "JAVA%20SCRIPT/Assignment/Day8/Task4/index.html", desc: "Displaying product pricing data." },
+      { category: "javascript", day: "Day 8", title: "Day 8 - Task 5: Colors Array", path: "JAVA%20SCRIPT/Assignment/Day8/Task5/index.html", desc: "Looping and rendering color names." },
+      { category: "javascript", day: "Day 8", title: "Day 8 - Task 6: City Names", path: "JAVA%20SCRIPT/Assignment/Day8/Task6/index.html", desc: "City list generation with DOM." },
+
+      { category: "javascript", day: "Day 9", title: "Day 9 - DOM Task 1", path: "JAVA%20SCRIPT/Assignment/day9/task1.html", desc: "DOM element creation and manipulation." },
+      { category: "javascript", day: "Day 9", title: "Day 9 - DOM Task 2", path: "JAVA%20SCRIPT/Assignment/day9/task2.html", desc: "Dynamic text updates and styling." },
+      { category: "javascript", day: "Day 9", title: "Day 9 - DOM Task 3", path: "JAVA%20SCRIPT/Assignment/day9/task3.html", desc: "Button click counters and events." },
+      { category: "javascript", day: "Day 9", title: "Day 9 - DOM Task 4", path: "JAVA%20SCRIPT/Assignment/day9/task4.html", desc: "Interactive list appending." },
+
+      { category: "javascript", day: "Day 10", title: "JS Master Guide Multi-Page Portal", path: "JAVA%20SCRIPT/Assignment/day10/js_master_article/index.html", desc: "Full 8-module comprehensive JS guide." },
+      { category: "javascript", day: "Day 10", title: "Day 10 - Task 1: DOM Elements", path: "JAVA%20SCRIPT/Assignment/day10/task1.html", desc: "DOM traversal and node selectors." },
+      { category: "javascript", day: "Day 10", title: "Day 10 - Task 2: Event Listeners", path: "JAVA%20SCRIPT/Assignment/day10/task2.html", desc: "addEventListener mouse & click events." },
+      { category: "javascript", day: "Day 10", title: "Day 10 - Task 3: Input Handlers", path: "JAVA%20SCRIPT/Assignment/day10/task3.html", desc: "Live form typing and keyup handlers." },
+      { category: "javascript", day: "Day 10", title: "Day 10 - Task 4: Style Mutation", path: "JAVA%20SCRIPT/Assignment/day10/task4.html", desc: "Changing CSS styles dynamically via JS." },
+      { category: "javascript", day: "Day 10", title: "Day 10 - Task 5: Dynamic List", path: "JAVA%20SCRIPT/Assignment/day10/task5.html", desc: "Creating and removing list items." },
+      { category: "javascript", day: "Day 10", title: "Day 10 - Task 6: Attribute Toggle", path: "JAVA%20SCRIPT/Assignment/day10/task6.html", desc: "setAttribute and getAttribute usage." },
+      { category: "javascript", day: "Day 10", title: "Day 10 - Task 7: Timer Intervals", path: "JAVA%20SCRIPT/Assignment/day10/task7.html", desc: "setInterval and setTimeout operations." },
+      { category: "javascript", day: "Day 10", title: "Day 10 - Logical Practice 1", path: "JAVA%20SCRIPT/Assignment/day10/logical1.html", desc: "Logical reasoning algorithmic exercises." },
+
+      { category: "javascript", day: "Day 11", title: "Day 11 - Task 1: Events", path: "JAVA%20SCRIPT/Assignment/day11/task1.html", desc: "Event handling and callback functions." },
+      { category: "javascript", day: "Day 11", title: "Day 11 - Task 2: Target & Bubbling", path: "JAVA%20SCRIPT/Assignment/day11/task2.html", desc: "Event propagation and e.target." },
+      { category: "javascript", day: "Day 11", title: "Day 11 - Task 3: Keyboard Controls", path: "JAVA%20SCRIPT/Assignment/day11/task3.html", desc: "Keydown and arrow key event capture." },
+
+      { category: "javascript", day: "Day 12", title: "Day 12 - Task 1: Form Validation", path: "JAVA%20SCRIPT/Assignment/day12/task1.html", desc: "Form input validation with error alerts." },
+      { category: "javascript", day: "Day 12", title: "Day 12 - Task 2: Email RegEx", path: "JAVA%20SCRIPT/Assignment/day12/task2.html", desc: "Pattern matching for valid emails." },
+      { category: "javascript", day: "Day 12", title: "Day 12 - Task 3: Password Strength", path: "JAVA%20SCRIPT/Assignment/day12/task3.html", desc: "Length & character validation." },
+      { category: "javascript", day: "Day 12", title: "Day 12 - Task 4: Submit Handler", path: "JAVA%20SCRIPT/Assignment/day12/task4.html", desc: "e.preventDefault and data collection." },
+
+      { category: "javascript", day: "Day 13", title: "Day 13 - Task 1: DOM Selectors", path: "JAVA%20SCRIPT/Assignment/Day13/Task1/index.html", desc: "getElementById and querySelectorAll." },
+      { category: "javascript", day: "Day 13", title: "Day 13 - Task 2: Button Click Event", path: "JAVA%20SCRIPT/Assignment/Day13/Task2/index.html", desc: "Interactive button text updates." },
+
+      { category: "javascript", day: "Day 15", title: "Day 15 - Show / Hide Content", path: "JAVA%20SCRIPT/Assignment/Day15/Task/Task1/index.html", desc: "Smooth opacity and display toggles." },
+      { category: "javascript", day: "Day 15", title: "Day 15 - Color Toggle Box", path: "JAVA%20SCRIPT/Assignment/Day15/Task/Task2/index.html", desc: "Dynamic background color switching." },
+      { category: "javascript", day: "Day 15", title: "Day 15 - Smooth Card Toggle", path: "JAVA%20SCRIPT/Assignment/Day15/Task/Task3/index.html", desc: "Expandable image card details." },
+      { category: "javascript", day: "Day 15", title: "Day 15 - DOM Process Practice", path: "JAVA%20SCRIPT/Assignment/Day15/assets/index.html", desc: "DOM manipulation and click listener." },
+
+      { category: "javascript", day: "Day 16", title: "Day 16 - Task 1: Add Class", path: "JAVA%20SCRIPT/Assignment/Day16/Day16/Task1/index.html", desc: "classList.add active styling." },
+      { category: "javascript", day: "Day 16", title: "Day 16 - Task 2: Remove Class", path: "JAVA%20SCRIPT/Assignment/Day16/Day16/Task2/index.html", desc: "classList.remove state clearing." },
+      { category: "javascript", day: "Day 16", title: "Day 16 - Task 3: Toggle Theme", path: "JAVA%20SCRIPT/Assignment/Day16/Day16/Task3/index.html", desc: "Light and dark theme class switcher." },
+      { category: "javascript", day: "Day 16", title: "Day 16 - Task Hub Overview", path: "JAVA%20SCRIPT/Assignment/Day16/Task/index.html", desc: "ClassList exercises overview." },
+
+      { category: "javascript", day: "Day 17", title: "Day 17 - User Registration", path: "JAVA%20SCRIPT/Assignment/DAY17/DAY17/register.html", desc: "Form validation with localStorage saving." },
+      { category: "javascript", day: "Day 17", title: "Day 17 - User Login Auth", path: "JAVA%20SCRIPT/Assignment/DAY17/DAY17/login.html", desc: "Credential verification against storage." },
+      { category: "javascript", day: "Day 17", title: "Day 17 - User Dashboard", path: "JAVA%20SCRIPT/Assignment/DAY17/DAY17/dashboard.html", desc: "Protected authenticated user panel." },
+
+      { category: "javascript", day: "Day 18", title: "Day 18 - Auth Suite: Register", path: "JAVA%20SCRIPT/Assignment/day18/day17/register.html", desc: "Multi-input signup system." },
+      { category: "javascript", day: "Day 18", title: "Day 18 - Auth Suite: Login", path: "JAVA%20SCRIPT/Assignment/day18/day17/login.html", desc: "Session storage authentication." },
+      { category: "javascript", day: "Day 18", title: "Day 18 - Auth Suite: Dashboard", path: "JAVA%20SCRIPT/Assignment/day18/day17/dashboard.html", desc: "User profile dashboard interface." },
+
+      { category: "javascript", day: "Day 19", title: "Day 19 - Task 1: DOM Operations", path: "JAVA%20SCRIPT/Assignment/day19/task1.html", desc: "DOM element creation and insertion." },
+      { category: "javascript", day: "Day 19", title: "Day 19 - Task 2: Element Removal", path: "JAVA%20SCRIPT/Assignment/day19/task2.html", desc: "Removing child nodes dynamically." },
+      { category: "javascript", day: "Day 19", title: "Day 19 - Task 3: Style Updates", path: "JAVA%20SCRIPT/Assignment/day19/task3.html", desc: "Interactive style changes via JS." },
+      { category: "javascript", day: "Day 19", title: "Day 19 - Task 4: Dynamic Matrix", path: "JAVA%20SCRIPT/Assignment/day19/task4.html", desc: "Grid generation with loops." },
+
+      { category: "javascript", day: "Day 20", title: "IT in 2030 - Futuristic Portal", path: "JAVA%20SCRIPT/Assignment/DAy20/IT2030/index.html", desc: "Next-gen tech horizon with 3 sub-pages." },
+      { category: "javascript", day: "Day 20", title: "IT in 2030 - World Without IT", path: "JAVA%20SCRIPT/Assignment/DAy20/IT2030/world.html", desc: "Societal impact without technology." },
+      { category: "javascript", day: "Day 20", title: "IT in 2030 - My Life Without IT", path: "JAVA%20SCRIPT/Assignment/DAy20/IT2030/mylife.html", desc: "Personal reflective story on IT." },
+      { category: "javascript", day: "Day 20", title: "Day 20 - Task 1: Products Fetch", path: "JAVA%20SCRIPT/Assignment/DAy20/Task1/task1.html", desc: "Dynamic API data fetching & rendering." },
+      { category: "javascript", day: "Day 20", title: "Day 20 - Task 2: User Profiles", path: "JAVA%20SCRIPT/Assignment/DAy20/Task1/task2.html", desc: "Rendering remote user accounts list." },
+      { category: "javascript", day: "Day 20", title: "Day 20 - Task 3: Post Cards", path: "JAVA%20SCRIPT/Assignment/DAy20/Task1/task3.html", desc: "Blog post cards with fetched data." },
+      { category: "javascript", day: "Day 20", title: "Day 20 - Task 4: Todo Task List", path: "JAVA%20SCRIPT/Assignment/DAy20/Task1/task4.html", desc: "Interactive todo list from API." },
+      { category: "javascript", day: "Day 20", title: "Day 20 - Task 5: Dynamic Gallery", path: "JAVA%20SCRIPT/Assignment/DAy20/Task1/task5.html", desc: "Photo gallery rendering from JSON." },
+
+
+      // ==========================================
+      // REACT ASSIGNMENTS & CLASS PROJECTS
+      // ==========================================
+      { category: "react", day: "Day 2 (Assign)", title: "React Base UI Component Library", path: "REACT/Assignment/DAY2/DAY2/Base/index.html", desc: "Modular Button, Card & Input components." },
+      { category: "react", day: "Day 3 (Assign)", title: "Profile Card React App", path: "REACT/Assignment/DAY3/DAY3/profilecard/index.html", desc: "Header, Hero & User Profile card app." },
+      { category: "react", day: "Day 4 (Assign)", title: "React Navigation Router App", path: "REACT/Assignment/DAY4/DAY4/navigate/index.html", desc: "Multi-page navigation with React." },
+      { category: "react", day: "Day 2 (Class)", title: "Create React App Intro", path: "REACT/Class/Day2/introreact/public/index.html", desc: "Standard CRA environment & logo header." },
+      { category: "react", day: "Day 2 (Class)", title: "Vite React Setup", path: "REACT/Class/Day2/introvite/index.html", desc: "Fast Vite build setup with hot reload." },
+      { category: "react", day: "Day 3 (Class)", title: "Vite Component Architecture", path: "REACT/Class/Day3/introvite/index.html", desc: "Component hierarchy and JSX props." },
+      { category: "react", day: "Day 4 (Class)", title: "React Navigation Hub", path: "REACT/Class/Day4/reactnavigation/index.html", desc: "SPA routing and page transitions." },
+      { category: "react", day: "Day 5 (Class)", title: "Interactive State Management", path: "REACT/Class/Day%205/interativte/index.html", desc: "useState hooks and dynamic re-rendering." },
+      { category: "react", day: "Day 6 (Class)", title: "React Hooks Explorer", path: "REACT/Class/Day6/hooks/index.html", desc: "useEffect lifecycle and custom state." },
+      { category: "react", day: "Day 7 (Class)", title: "React Form Handling System", path: "REACT/Class/Day7/formhandling/index.html", desc: "Controlled inputs, state & submission." },
+
+
+      // ==========================================
+      // ARTICLES & EDITORIAL PROJECTS
+      // ==========================================
+      { category: "article", day: "Project", title: "Life in 2050 - Home Portal", path: "article/index.html", desc: "Futuristic multi-page vision for 2050." },
+      { category: "article", day: "Project", title: "Life in 2050 - Future Life", path: "article/future.html", desc: "Smart homes, healthcare, and society." },
+      { category: "article", day: "Project", title: "Life in 2050 - Technology", path: "article/technology.html", desc: "AI, quantum computing & cybernetics." },
+      { category: "article", day: "Project", title: "Life in 2050 - Transportation", path: "article/transportation.html", desc: "Flying vehicles & hyperloop networks." },
+      { category: "article", day: "Project", title: "Life in 2050 - Future Education", path: "article/education.html", desc: "Virtual classrooms & cognitive learning." },
+      { category: "article", day: "Project", title: "Life in 2050 - Contact & Queries", path: "article/contact.html", desc: "Interactive feedback for the 2050 project." }
+
+    ];
+
+    // Category Metadata
+    const CATEGORY_META = {
+      html: { name: "HTML", color: "orange", icon: "fa-brands fa-html5", badge: "bg-orange-50 text-orange-700 border-orange-200" },
+      css: { name: "CSS", color: "sky", icon: "fa-brands fa-css3-alt", badge: "bg-sky-50 text-sky-700 border-sky-200" },
+      javascript: { name: "JavaScript", color: "amber", icon: "fa-brands fa-js", badge: "bg-amber-50 text-amber-700 border-amber-200" },
+      bs: { name: "Bootstrap & Tailwind", color: "purple", icon: "fa-brands fa-bootstrap", badge: "bg-purple-50 text-purple-700 border-purple-200" },
+      react: { name: "React", color: "cyan", icon: "fa-brands fa-react", badge: "bg-cyan-50 text-cyan-700 border-cyan-200" },
+      article: { name: "Articles & Projects", color: "rose", icon: "fa-solid fa-newspaper", badge: "bg-rose-50 text-rose-700 border-rose-200" }
+    };
+
+    let currentCategory = 'all';
+    let currentSearch = '';
+
+    // Initialize Hub
+    function initHub() {
+      updateCategoryCounts();
+      renderAssignments();
+    }
+
+    // Update Counts in Nav Pills
+    function updateCategoryCounts() {
+      const counts = { all: ASSIGNMENTS_DATA.length, html: 0, css: 0, javascript: 0, bs: 0, react: 0, article: 0 };
+      
+      ASSIGNMENTS_DATA.forEach(item => {
+        if (counts[item.category] !== undefined) {
+          counts[item.category]++;
+        }
+      });
+
+      document.getElementById('count-all').innerText = counts.all;
+      document.getElementById('count-html').innerText = counts.html;
+      document.getElementById('count-css').innerText = counts.css;
+      document.getElementById('count-javascript').innerText = counts.javascript;
+      document.getElementById('count-bs').innerText = counts.bs;
+      document.getElementById('count-react').innerText = counts.react;
+      document.getElementById('count-article').innerText = counts.article;
+
+      document.getElementById('stat-html').innerText = counts.html + " Pages";
+      document.getElementById('stat-css').innerText = counts.css + " Pages";
+      document.getElementById('stat-js').innerText = counts.javascript + " Tasks";
+      document.getElementById('stat-bs').innerText = counts.bs + " Pages";
+      document.getElementById('stat-react').innerText = counts.react + " Apps";
+      document.getElementById('stat-article').innerText = counts.article + " Articles";
+    }
+
+    // Render Assignments Grouped by Category and Day
+    function renderAssignments() {
+      const container = document.getElementById('assignmentSections');
+      container.innerHTML = '';
+
+      const query = currentSearch.toLowerCase().trim();
+      let totalVisible = 0;
+
+      // Filter dataset
+      const filtered = ASSIGNMENTS_DATA.filter(item => {
+        const matchesCategory = (currentCategory === 'all' || item.category === currentCategory);
+        const searchTarget = `${item.title} ${item.day} ${item.path} ${item.desc} ${item.category}`.toLowerCase();
+        const matchesSearch = (!query || searchTarget.includes(query));
+        return matchesCategory && matchesSearch;
+      });
+
+      totalVisible = filtered.length;
+
+      // Group by Category
+      const grouped = {};
+      filtered.forEach(item => {
+        if (!grouped[item.category]) grouped[item.category] = {};
+        if (!grouped[item.category][item.day]) grouped[item.category][item.day] = [];
+        grouped[item.category][item.day].push(item);
+      });
+
+      // Render each category block
+      Object.keys(grouped).forEach(catKey => {
+        const meta = CATEGORY_META[catKey];
+        const dayGroups = grouped[catKey];
+
+        const section = document.createElement('section');
+        section.className = 'space-y-6';
+
+        // Section Header
+        section.innerHTML = `
+          <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-lg ${meta.badge} flex items-center justify-center font-bold text-sm">
+                <i class="${meta.icon}"></i>
+              </span>
+              <div>
+                <h2 class="text-lg sm:text-xl font-bold text-slate-900">${meta.name} Assignments</h2>
+                <p class="text-xs text-slate-500">Preview inside the page, view live demo, or inspect code on GitHub</p>
+              </div>
+            </div>
+            <span class="text-xs font-semibold px-3 py-1 rounded-full ${meta.badge}">
+              ${Object.values(dayGroups).flat().length} items
+            </span>
+          </div>
+        `;
+
+        const daysContainer = document.createElement('div');
+        daysContainer.className = 'space-y-6';
+
+        // Render Day Subgroups
+        Object.keys(dayGroups).forEach(dayKey => {
+          const items = dayGroups[dayKey];
+          
+          const dayDiv = document.createElement('div');
+          dayDiv.className = 'space-y-3';
+          dayDiv.innerHTML = `
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold px-2 py-0.5 rounded bg-slate-200/80 text-slate-700">${dayKey}</span>
+              <span class="text-[11px] text-slate-400 font-medium">${items.length} ${items.length === 1 ? 'task' : 'tasks'}</span>
+            </div>
+          `;
+
+          const cardsGrid = document.createElement('div');
+          cardsGrid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5';
+
+          items.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'soft-card rounded-xl p-4 flex flex-col justify-between group';
+            
+            const liveUrl = getLiveDemoUrl(item.path);
+            const githubUrl = getGitHubSourceUrl(item.path);
+
+            card.innerHTML = `
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${meta.badge}">
+                    ${item.day}
+                  </span>
+                  <span class="text-[10px] text-slate-400 font-mono truncate max-w-[170px]" title="${item.path}">
+                    ${item.path}
+                  </span>
+                </div>
+                <h3 class="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-indigo-600 transition mb-1 leading-snug">
+                  ${item.title}
+                </h3>
+                <p class="text-[11px] text-slate-500 leading-relaxed mb-4">
+                  ${item.desc}
+                </p>
+              </div>
+
+              <!-- Action Buttons Row -->
+              <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-1.5">
+                
+                <!-- 1. [View Assignment] - In-Page Live Modal Preview -->
+                <button onclick="openPreviewModal('${encodeURIComponent(item.path)}', '${item.title.replace(/'/g, "\\'")}', '${meta.name}')" 
+                        class="px-2.5 py-1.5 bg-indigo-50 hover:bg-indigo-600 text-indigo-700 hover:text-white rounded-lg text-xs font-semibold transition flex items-center gap-1.5 shadow-2xs"
+                        title="Open interactive preview modal">
+                  <i class="fa-solid fa-eye text-[11px]"></i>
+                  <span>View Assignment</span>
+                </button>
+                
+                <!-- 2. [Live Demo] & 3. [View on GitHub] -->
+                <div class="flex items-center gap-1">
+                  <a href="${liveUrl}" target="_blank" rel="noopener noreferrer" 
+                     class="px-2.5 py-1.5 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white rounded-lg text-xs font-semibold transition flex items-center gap-1 shadow-2xs"
+                     title="Open live rendered output in new tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                    <span>Live Demo</span>
+                  </a>
+
+                  <a href="${githubUrl}" target="_blank" rel="noopener noreferrer" 
+                     class="px-2 py-1.5 bg-slate-100 hover:bg-slate-900 text-slate-700 hover:text-white rounded-lg text-xs font-semibold transition flex items-center gap-1 shadow-2xs"
+                     title="View source code on GitHub">
+                    <i class="fa-brands fa-github text-[11px]"></i>
+                    <span>GitHub</span>
+                  </a>
+                </div>
+
+              </div>
+            `;
+
+            cardsGrid.appendChild(card);
+          });
+
+          dayDiv.appendChild(cardsGrid);
+          daysContainer.appendChild(dayDiv);
+        });
+
+        section.appendChild(daysContainer);
+        container.appendChild(section);
+      });
+
+      // Update Results Counter & Empty State
+      const resultsCountEl = document.getElementById('resultsCount');
+      const emptyStateEl = document.getElementById('emptyState');
+
+      if (totalVisible === 0) {
+        emptyStateEl.classList.remove('hidden');
+        resultsCountEl.innerText = '0 assignments found';
+      } else {
+        emptyStateEl.classList.add('hidden');
+        resultsCountEl.innerText = `Showing ${totalVisible} assignment${totalVisible === 1 ? '' : 's'}`;
+      }
+    }
+
+    // Filter by Category
+    function filterCategory(cat) {
+      currentCategory = cat;
+
+      document.querySelectorAll('.category-pill').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      const activeBtn = document.getElementById('btn-' + cat);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      renderAssignments();
+    }
+
+    // Search Filter
+    function handleSearch() {
+      const input = document.getElementById('searchInput');
+      currentSearch = input.value;
+
+      const clearBtn = document.getElementById('clearSearchBtn');
+      if (currentSearch.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+
+      renderAssignments();
+    }
+
+    // Clear Search
+    function clearSearch() {
+      document.getElementById('searchInput').value = '';
+      currentSearch = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      filterCategory('all');
+    }
+
+    // Live Preview Modal Functions
+    function openPreviewModal(encodedPath, title, category) {
+      const path = decodeURIComponent(encodedPath);
+      const modal = document.getElementById('previewModal');
+      const iframe = document.getElementById('previewIframe');
+      
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalPath').innerText = path;
+      document.getElementById('modalCategoryBadge').innerText = category;
+      
+      // Update Modal Links
+      document.getElementById('modalLiveDemo').href = path;
+      document.getElementById('modalGitHub').href = getGitHubSourceUrl(path);
+
+      iframe.src = path;
+      setViewport('desktop');
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePreviewModal() {
+      const modal = document.getElementById('previewModal');
+      const iframe = document.getElementById('previewIframe');
+      
+      iframe.src = '';
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function refreshPreview() {
+      const iframe = document.getElementById('previewIframe');
+      const currentSrc = iframe.src;
+      iframe.src = '';
+      setTimeout(() => { iframe.src = currentSrc; }, 50);
+    }
+
+    function setViewport(size) {
+      const iframe = document.getElementById('previewIframe');
+      
+      document.getElementById('vp-desktop').className = "px-2.5 py-1 rounded text-slate-400 hover:text-white font-medium transition";
+      document.getElementById('vp-tablet').className = "px-2.5 py-1 rounded text-slate-400 hover:text-white font-medium transition";
+      document.getElementById('vp-mobile').className = "px-2.5 py-1 rounded text-slate-400 hover:text-white font-medium transition";
+
+      iframe.className = "bg-white border border-slate-200 transition-all duration-200 shadow-sm";
+
+      if (size === 'desktop') {
+        document.getElementById('vp-desktop').className = "px-2.5 py-1 rounded text-white bg-slate-700 font-medium transition";
+        iframe.classList.add('preview-desktop');
+      } else if (size === 'tablet') {
+        document.getElementById('vp-tablet').className = "px-2.5 py-1 rounded text-white bg-slate-700 font-medium transition";
+        iframe.classList.add('preview-tablet');
+      } else if (size === 'mobile') {
+        document.getElementById('vp-mobile').className = "px-2.5 py-1 rounded text-white bg-slate-700 font-medium transition";
+        iframe.classList.add('preview-mobile');
+      }
+    }
+
+    // Guide Modal
+    function openGuideModal() {
+      document.getElementById('guideModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGuideModal() {
+      document.getElementById('guideModal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Copy Path Helper with Toast
+    function copyPath(path) {
+      navigator.clipboard.writeText(path).then(() => {
+        const toast = document.getElementById('toast');
+        document.getElementById('toastMsg').innerText = `Path copied: ${path}`;
+        
+        toast.classList.remove('translate-y-20', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+        
+        setTimeout(() => {
+          toast.classList.remove('translate-y-0', 'opacity-100');
+          toast.classList.add('translate-y-20', 'opacity-0');
+        }, 2500);
+      });
+    }
+
+    // Keyboard Shortcuts (Esc to close modals)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closePreviewModal();
+        closeGuideModal();
+      }
+    });
+
+    // Close on backdrop click
+    document.getElementById('previewModal').addEventListener('click', (e) => {
+      if (e.target.id === 'previewModal') closePreviewModal();
+    });
+
+    document.getElementById('guideModal').addEventListener('click', (e) => {
+      if (e.target.id === 'guideModal') closeGuideModal();
+    });
+
+    // Run on startup
+    window.addEventListener('DOMContentLoaded', initHub);
+  </script>
+
+</body>
+</html>
